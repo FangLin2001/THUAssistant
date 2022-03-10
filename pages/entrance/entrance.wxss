@@ -1,0 +1,12 @@
+/* pages/entrance/entrance.wxss */
+.sep-cell-text {
+  font-family: "Times New Roman", "Microsoft Yahei";
+  font-size: 18px;
+  color: #9932CC;
+  font-weight: normal;
+}
+
+.sep-cell-icon {
+  color: #9932CC;
+  size: 20px;
+}

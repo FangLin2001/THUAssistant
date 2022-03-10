@@ -1,0 +1,19 @@
+<!--pages/learn/announcement/announcement.wxml-->
+<view>
+  <van-cell-group>
+			<view v-for="(announcement,index) in list">
+				<van-cell use-label-slot="true" clickable="true" link-type="navigateTo"
+					url="/pages/tabBar/announcement/detail">
+					<view slot="title">
+						<view class="van-cell-text">{{announcement.title}}</view>
+					</view>
+					<view slot="">
+						<view class="van-cell-text">{{announcement.course}}</view>
+					</view>
+					<view slot="label">
+						<view class="van-cell-text">{{announcement.content}}</view>
+					</view>
+				</van-cell>
+			</view>
+		</van-cell-group>
+</view>

@@ -1,0 +1,48 @@
+{
+  "pages":[
+    "custom-tab-bar/index",
+    "pages/logs/logs",
+    "pages/entrance/entrance",
+    "pages/setting/setting",
+    "pages/learn/index",
+    "pages/learn/announcement/announcement",
+    "pages/learn/homework/homework",
+    "pages/learn/course/course",
+    "pages/learn/calendar/calendar",
+    "pages/info/index",
+    "pages/info/grade/grade"
+  ],
+  "tabBar": {
+    "custom": true,
+    "list": [
+      {
+        "pagePath": "pages/entrance/entrance",
+        "text": "导航"
+      },
+      {
+        "pagePath": "pages/setting/setting",
+        "text": "设置"
+      }
+    ]
+  },
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#9932CC",
+    "navigationBarTitleText": "THUAssistant",
+    "navigationBarTextStyle":"black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-tabbar": "@vant/weapp/tabbar/index",
+    "van-tabbar-item": "@vant/weapp/tabbar-item/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-toast": "@vant/weapp/toast/index",
+    "van-tag": "@vant/weapp/tag/index",
+    "van-grid": "@vant/weapp/grid/index",
+    "van-grid-item": "@vant/weapp/grid-item/index",
+    "van-nav-bar": "@vant/weapp/nav-bar/index"
+  }
+}

@@ -1,0 +1,15 @@
+<!--pages/entrance/entrance.wxml-->
+<view class="常用服务">
+  <van-cell inset>
+    <view slot="icon">
+      <van-icon name="apps-o" size="24px" color="#9932CC"/>
+    </view>
+    <view slot="title">
+      <view class="sep-cell-text">常用服务</view>
+    </view>
+  </van-cell>
+  <van-grid clickable column-num="3">
+    <van-grid-item icon="home-o" link-type="navigateTo" url="/pages/learn/index" text="网络学堂" />
+    <van-grid-item icon="search" link-type="navigateTo" url="/pages/info/index" text="GPA" />
+  </van-grid>
+</view>
