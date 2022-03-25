@@ -3,7 +3,14 @@
 Component({
   data: {
     active: 0,
+
+    notifications = [{}],
+    discardNotifications = [],
+    homeworks = [{}],
+    discardHomeworks = [],
     courses: [{}],
+    discardCourses:[],
+    
     tabDatas: [{
         "url": "/pages/learn/announcement/announcement",
         "icon": "bulb-o",

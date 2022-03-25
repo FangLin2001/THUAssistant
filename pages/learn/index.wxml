@@ -5,13 +5,26 @@
     <van-tab wx:for="{{ tabDatas }}" wx:key="index" title="{{item.text}}">
       <!-- 公告 -->
       <view hidden="{{active != 0}}">
-
+        <van-cell-group>
+          <view wx:for="{{notifications}}" wx:key="id" wx:for-item="notification">
+            <van-cell inset use-label-slot="true" clickable="true" link-type="navigateTo" url="/pages/learn/course/detail">
+              <view slot="title">
+                <view class="van-cell-text">{{notification.name}}</view>
+              </view>
+              <view slot="label">
+                <view class="van-cell-text">{{notification.timeAndLocation}}</view>
+              </view>
+              <view slot="">
+                <view class="van-cell-text">{{notification.teacherName}}</view>
+              </view>
+            </van-cell>
+          </view>
+        </van-cell-group>
       </view>
       <!-- 作业 -->
       <view hidden="{{active != 1}}">
-        <view hidden="{{active != 2}}">
         <van-cell-group>
-          <view wx:for="{{homework}}" wx:key="id" wx:for-item="homework">
+          <view wx:for="{{homeworks}}" wx:key="id" wx:for-item="homework">
             <van-cell inset use-label-slot="true" clickable="true" link-type="navigateTo" url="/pages/learn/course/detail">
               <view slot="title">
                 <view class="van-cell-text">{{homework.name}}</view>
@@ -25,7 +38,6 @@
             </van-cell>
           </view>
         </van-cell-group>
-      </view>
       </view>
       <!-- 课程 -->
       <view hidden="{{active != 2}}">
