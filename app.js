@@ -1,6 +1,4 @@
 // app.js
-import { Learn2018Helper } from 'thu-learn-lib';
-import {InfoHelper} from "thu-info-lib";
 
 App({
   onLaunch() {
@@ -18,7 +16,5 @@ App({
   },
   globalData: {
     userInfo: null,
-    LearnHelper: new Learn2018Helper(),
-    InfoHelper: new InfoHelper()
   }
 })

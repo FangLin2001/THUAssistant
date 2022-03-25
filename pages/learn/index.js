@@ -1,5 +1,4 @@
 // pages/learn/index.js
-import { Learn2018Helper } from 'thu-learn-lib';
 
 Component({
   data: {

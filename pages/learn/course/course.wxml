@@ -1,2 +1,19 @@
 <!--pages/learn/course/course.wxml-->
-<text>pages/learn/course/course.wxml</text>
+<view>
+  <van-cell-group>
+			<view wx:for="{{list}}" wx:for-item="course">
+				<van-cell inset use-label-slot="true" clickable="true" link-type="navigateTo"
+					url="/pages/learn/course/detail">
+					<view slot="title">
+						<view class="van-cell-text">{{course.title}}</view>
+					</view>
+					<view slot="">
+						<view class="van-cell-text">{{course.course}}</view>
+					</view>
+					<view slot="label">
+						<view class="van-cell-text">{{course.content}}</view>
+					</view>
+				</van-cell>
+			</view>
+		</van-cell-group>
+</view>

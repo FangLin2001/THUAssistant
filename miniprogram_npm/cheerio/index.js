@@ -4,7 +4,7 @@ var __DEFINE__ = function(modId, func, req) { var m = { exports: {}, _tempexport
 var __REQUIRE__ = function(modId, source) { if(!__MODS__[modId]) return require(source); if(!__MODS__[modId].status) { var m = __MODS__[modId].m; m._exports = m._tempexports; var desp = Object.getOwnPropertyDescriptor(m, "exports"); if (desp && desp.configurable) Object.defineProperty(m, "exports", { set: function (val) { if(typeof val === "object" && val !== m._exports) { m._exports.__proto__ = val.__proto__; Object.keys(val).forEach(function (k) { m._exports[k] = val[k]; }); } m._tempexports = val }, get: function () { return m._tempexports; } }); __MODS__[modId].status = 1; __MODS__[modId].func(__MODS__[modId].req, m, m.exports); } return __MODS__[modId].m.exports; };
 var __REQUIRE_WILDCARD__ = function(obj) { if(obj && obj.__esModule) { return obj; } else { var newObj = {}; if(obj != null) { for(var k in obj) { if (Object.prototype.hasOwnProperty.call(obj, k)) newObj[k] = obj[k]; } } newObj.default = obj; return newObj; } };
 var __REQUIRE_DEFAULT__ = function(obj) { return obj && obj.__esModule ? obj.default : obj; };
-__DEFINE__(1646914021049, function(require, module, exports) {
+__DEFINE__(1646969312839, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.root = exports.parseHTML = exports.merge = exports.contains = void 0;
@@ -87,13 +87,13 @@ exports.parseHTML = staticMethods.parseHTML;
  */
 exports.root = staticMethods.root;
 
-}, function(modId) {var map = {"./types":1646914021050,"./load":1646914021051,"./static":1646914021053}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021050, function(require, module, exports) {
+}, function(modId) {var map = {"./types":1646969312840,"./load":1646969312841,"./static":1646969312843}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969312840, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021051, function(require, module, exports) {
+__DEFINE__(1646969312841, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.load = void 0;
@@ -148,8 +148,8 @@ function load(content, options, isDocument) {
 }
 exports.load = load;
 
-}, function(modId) { var map = {"./options":1646914021052,"./static":1646914021053,"./cheerio":1646914021056,"./parse":1646914021057}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021052, function(require, module, exports) {
+}, function(modId) { var map = {"./options":1646969312842,"./static":1646969312843,"./cheerio":1646969312846,"./parse":1646969312847}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969312842, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.flatten = void 0;
@@ -174,7 +174,7 @@ function flatten(options) {
 exports.flatten = flatten;
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021053, function(require, module, exports) {
+__DEFINE__(1646969312843, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.merge = exports.contains = exports.root = exports.parseHTML = exports.text = exports.xml = exports.html = void 0;
@@ -383,8 +383,8 @@ function isArrayLike(item) {
     return true;
 }
 
-}, function(modId) { var map = {"./options":1646914021052,"./parsers/parse5-adapter":1646914021054,"./parsers/htmlparser2-adapter":1646914021055}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021054, function(require, module, exports) {
+}, function(modId) { var map = {"./options":1646969312842,"./parsers/parse5-adapter":1646969312844,"./parsers/htmlparser2-adapter":1646969312845}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969312844, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.render = exports.parse = void 0;
@@ -428,7 +428,7 @@ function render(dom) {
 exports.render = render;
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021055, function(require, module, exports) {
+__DEFINE__(1646969312845, function(require, module, exports) {
 
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -441,7 +441,7 @@ var dom_serializer_1 = require("dom-serializer");
 Object.defineProperty(exports, "render", { enumerable: true, get: function () { return __importDefault(dom_serializer_1).default; } });
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021056, function(require, module, exports) {
+__DEFINE__(1646969312846, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Cheerio = void 0;
@@ -558,8 +558,8 @@ function isNode(obj) {
         obj.type === 'comment');
 }
 
-}, function(modId) { var map = {"./parse":1646914021057,"./options":1646914021052,"./utils":1646914021058,"./api/attributes":1646914021059,"./api/traversing":1646914021060,"./api/manipulation":1646914021061,"./api/css":1646914021062,"./api/forms":1646914021063}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021057, function(require, module, exports) {
+}, function(modId) { var map = {"./parse":1646969312847,"./options":1646969312842,"./utils":1646969312848,"./api/attributes":1646969312849,"./api/traversing":1646969312850,"./api/manipulation":1646969312851,"./api/css":1646969312852,"./api/forms":1646969312853}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969312847, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.update = void 0;
@@ -628,8 +628,8 @@ function update(newChilds, parent) {
 }
 exports.update = update;
 
-}, function(modId) { var map = {"./parsers/htmlparser2-adapter":1646914021055,"./parsers/parse5-adapter":1646914021054}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021058, function(require, module, exports) {
+}, function(modId) { var map = {"./parsers/htmlparser2-adapter":1646969312845,"./parsers/parse5-adapter":1646969312844}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969312848, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isHtml = exports.cloneDom = exports.domEach = exports.cssCase = exports.camelCase = exports.isCheerio = exports.isTag = void 0;
@@ -743,7 +743,7 @@ function isHtml(str) {
 exports.isHtml = isHtml;
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021059, function(require, module, exports) {
+__DEFINE__(1646969312849, function(require, module, exports) {
 
 /**
  * Methods for getting and modifying attributes.
@@ -1336,8 +1336,8 @@ function toggleClass(value, stateVal) {
 }
 exports.toggleClass = toggleClass;
 
-}, function(modId) { var map = {"../static":1646914021053,"../utils":1646914021058}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021060, function(require, module, exports) {
+}, function(modId) { var map = {"../static":1646969312843,"../utils":1646969312848}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969312850, function(require, module, exports) {
 
 /**
  * Methods for traversing the DOM structure.
@@ -2205,8 +2205,8 @@ function addBack(selector) {
 }
 exports.addBack = addBack;
 
-}, function(modId) { var map = {"../utils":1646914021058,"../static":1646914021053}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021061, function(require, module, exports) {
+}, function(modId) { var map = {"../utils":1646969312848,"../static":1646969312843}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969312851, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.clone = exports.text = exports.toString = exports.html = exports.empty = exports.replaceWith = exports.remove = exports.insertBefore = exports.before = exports.insertAfter = exports.after = exports.wrapAll = exports.unwrap = exports.wrapInner = exports.wrap = exports.prepend = exports.append = exports.prependTo = exports.appendTo = exports._makeDomArray = void 0;
@@ -3060,8 +3060,8 @@ function clone() {
 }
 exports.clone = clone;
 
-}, function(modId) { var map = {"../parse":1646914021057,"../static":1646914021053,"../utils":1646914021058}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021062, function(require, module, exports) {
+}, function(modId) { var map = {"../parse":1646969312847,"../static":1646969312843,"../utils":1646969312848}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969312852, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.css = void 0;
@@ -3158,8 +3158,8 @@ function parse(styles) {
     }, {});
 }
 
-}, function(modId) { var map = {"../utils":1646914021058}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021063, function(require, module, exports) {
+}, function(modId) { var map = {"../utils":1646969312848}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969312853, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.serializeArray = exports.serialize = void 0;
@@ -3245,8 +3245,8 @@ function serializeArray() {
 }
 exports.serializeArray = serializeArray;
 
-}, function(modId) { var map = {"../utils":1646914021058}; return __REQUIRE__(map[modId], modId); })
-return __REQUIRE__(1646914021049);
+}, function(modId) { var map = {"../utils":1646969312848}; return __REQUIRE__(map[modId], modId); })
+return __REQUIRE__(1646969312839);
 })()
 //miniprogram-npm-outsideDeps=["tslib","cheerio-select","htmlparser2","domhandler","parse5","parse5-htmlparser2-tree-adapter","dom-serializer"]
 //# sourceMappingURL=index.js.map

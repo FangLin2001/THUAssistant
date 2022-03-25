@@ -4,7 +4,7 @@ var __DEFINE__ = function(modId, func, req) { var m = { exports: {}, _tempexport
 var __REQUIRE__ = function(modId, source) { if(!__MODS__[modId]) return require(source); if(!__MODS__[modId].status) { var m = __MODS__[modId].m; m._exports = m._tempexports; var desp = Object.getOwnPropertyDescriptor(m, "exports"); if (desp && desp.configurable) Object.defineProperty(m, "exports", { set: function (val) { if(typeof val === "object" && val !== m._exports) { m._exports.__proto__ = val.__proto__; Object.keys(val).forEach(function (k) { m._exports[k] = val[k]; }); } m._tempexports = val }, get: function () { return m._tempexports; } }); __MODS__[modId].status = 1; __MODS__[modId].func(__MODS__[modId].req, m, m.exports); } return __MODS__[modId].m.exports; };
 var __REQUIRE_WILDCARD__ = function(obj) { if(obj && obj.__esModule) { return obj; } else { var newObj = {}; if(obj != null) { for(var k in obj) { if (Object.prototype.hasOwnProperty.call(obj, k)) newObj[k] = obj[k]; } } newObj.default = obj; return newObj; } };
 var __REQUIRE_DEFAULT__ = function(obj) { return obj && obj.__esModule ? obj.default : obj; };
-__DEFINE__(1646914021090, function(require, module, exports) {
+__DEFINE__(1646969312881, function(require, module, exports) {
 
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
@@ -34,8 +34,8 @@ Object.defineProperty(exports, "isComment", { enumerable: true, get: function ()
 Object.defineProperty(exports, "isDocument", { enumerable: true, get: function () { return domhandler_1.isDocument; } });
 Object.defineProperty(exports, "hasChildren", { enumerable: true, get: function () { return domhandler_1.hasChildren; } });
 
-}, function(modId) {var map = {"./stringify":1646914021091,"./traversal":1646914021092,"./manipulation":1646914021093,"./querying":1646914021094,"./legacy":1646914021095,"./helpers":1646914021096,"./feeds":1646914021097}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021091, function(require, module, exports) {
+}, function(modId) {var map = {"./stringify":1646969312882,"./traversal":1646969312883,"./manipulation":1646969312884,"./querying":1646969312885,"./legacy":1646969312886,"./helpers":1646969312887,"./feeds":1646969312888}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969312882, function(require, module, exports) {
 
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -124,7 +124,7 @@ function innerText(node) {
 exports.innerText = innerText;
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021092, function(require, module, exports) {
+__DEFINE__(1646969312883, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.prevElementSibling = exports.nextElementSibling = exports.getName = exports.hasAttrib = exports.getAttributeValue = exports.getSiblings = exports.getParent = exports.getChildren = void 0;
@@ -244,7 +244,7 @@ function prevElementSibling(elem) {
 exports.prevElementSibling = prevElementSibling;
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021093, function(require, module, exports) {
+__DEFINE__(1646969312884, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.prepend = exports.prependChild = exports.append = exports.appendChild = exports.replaceElement = exports.removeElement = void 0;
@@ -376,7 +376,7 @@ function prepend(elem, prev) {
 exports.prepend = prepend;
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021094, function(require, module, exports) {
+__DEFINE__(1646969312885, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.findAll = exports.existsOne = exports.findOne = exports.findOneChild = exports.find = exports.filter = void 0;
@@ -505,7 +505,7 @@ function findAll(test, nodes) {
 exports.findAll = findAll;
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021095, function(require, module, exports) {
+__DEFINE__(1646969312886, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getElementsByTagType = exports.getElementsByTagName = exports.getElementById = exports.getElements = exports.testElement = void 0;
@@ -631,8 +631,8 @@ function getElementsByTagType(type, nodes, recurse, limit) {
 }
 exports.getElementsByTagType = getElementsByTagType;
 
-}, function(modId) { var map = {"./querying":1646914021094}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021096, function(require, module, exports) {
+}, function(modId) { var map = {"./querying":1646969312885}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969312887, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.uniqueSort = exports.compareDocumentPosition = exports.removeSubsets = void 0;
@@ -760,7 +760,7 @@ function uniqueSort(nodes) {
 exports.uniqueSort = uniqueSort;
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021097, function(require, module, exports) {
+__DEFINE__(1646969312888, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getFeed = void 0;
@@ -952,8 +952,8 @@ function isValidFeed(value) {
     return value === "rss" || value === "feed" || value === "rdf:RDF";
 }
 
-}, function(modId) { var map = {"./stringify":1646914021091,"./legacy":1646914021095}; return __REQUIRE__(map[modId], modId); })
-return __REQUIRE__(1646914021090);
+}, function(modId) { var map = {"./stringify":1646969312882,"./legacy":1646969312886}; return __REQUIRE__(map[modId], modId); })
+return __REQUIRE__(1646969312881);
 })()
 //miniprogram-npm-outsideDeps=["domhandler","dom-serializer","domelementtype"]
 //# sourceMappingURL=index.js.map

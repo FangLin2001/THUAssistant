@@ -4,7 +4,7 @@ var __DEFINE__ = function(modId, func, req) { var m = { exports: {}, _tempexport
 var __REQUIRE__ = function(modId, source) { if(!__MODS__[modId]) return require(source); if(!__MODS__[modId].status) { var m = __MODS__[modId].m; m._exports = m._tempexports; var desp = Object.getOwnPropertyDescriptor(m, "exports"); if (desp && desp.configurable) Object.defineProperty(m, "exports", { set: function (val) { if(typeof val === "object" && val !== m._exports) { m._exports.__proto__ = val.__proto__; Object.keys(val).forEach(function (k) { m._exports[k] = val[k]; }); } m._tempexports = val }, get: function () { return m._tempexports; } }); __MODS__[modId].status = 1; __MODS__[modId].func(__MODS__[modId].req, m, m.exports); } return __MODS__[modId].m.exports; };
 var __REQUIRE_WILDCARD__ = function(obj) { if(obj && obj.__esModule) { return obj; } else { var newObj = {}; if(obj != null) { for(var k in obj) { if (Object.prototype.hasOwnProperty.call(obj, k)) newObj[k] = obj[k]; } } newObj.default = obj; return newObj; } };
 var __REQUIRE_DEFAULT__ = function(obj) { return obj && obj.__esModule ? obj.default : obj; };
-__DEFINE__(1646914021180, function(require, module, exports) {
+__DEFINE__(1646969312973, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Water = exports.InfoHelper = void 0;
@@ -59,7 +59,7 @@ class InfoHelper {
         memberList) => (0, library_1.bookLibraryRoom)(this, roomRes, start, end, memberList);
         this.getLibraryRoomBookingRecord = async () => (0, library_1.getLibraryRoomBookingRecord)(this);
         this.cancelLibraryRoomBooking = async (id) => (0, library_1.cancelLibraryRoomBooking)(this, id);
-        this.getNewsList = async (page, length, channel) => (0, news_1.getNewsList)(this, page, length, channel);
+        this.getNewsList = async (channel, page) => (0, news_1.getNewsList)(this, channel, page);
         this.getNewsDetail = async (url) => (0, news_1.getNewsDetail)(this, url);
         this.getSchedule = async () => (0, schedule_1.getSchedule)(this);
         this.getCrCaptchaUrl = async () => (0, cr_1.getCrCaptchaUrlMethod)();
@@ -114,9 +114,9 @@ class Water {
     }
 }
 exports.Water = Water;
-//# sourceMappingURL=index.js.map
-}, function(modId) {var map = {"./lib/basics":1646914021181,"./lib/core":1646914021182,"./lib/dorm":1646914021189,"./lib/water":1646914021192,"./lib/library":1646914021193,"./lib/news":1646914021196,"./lib/schedule":1646914021208,"./lib/sports":1646914021211,"./lib/cr":1646914021213,"./lib/gitlab":1646914021214}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021181, function(require, module, exports) {
+
+}, function(modId) {var map = {"./lib/basics":1646969312974,"./lib/core":1646969312975,"./lib/dorm":1646969312982,"./lib/water":1646969312985,"./lib/library":1646969312986,"./lib/news":1646969312989,"./lib/schedule":1646969313002,"./lib/sports":1646969313005,"./lib/cr":1646969313007,"./lib/gitlab":1646969313008}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969312974, function(require, module, exports) {
 
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -462,9 +462,9 @@ const countdown = async () => {
     return data.map((_, e) => (0, cheerio_1.default)(e).text()).get();
 };
 exports.countdown = countdown;
-//# sourceMappingURL=basics.js.map
-}, function(modId) { var map = {"./core":1646914021182,"../constants/strings":1646914021183,"../utils/cheerio":1646914021186,"../models/home/assessment":1646914021187,"../utils/network":1646914021184,"../mocks/basics":1646914021188,"../utils/error":1646914021185}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021182, function(require, module, exports) {
+
+}, function(modId) { var map = {"./core":1646969312975,"../constants/strings":1646969312976,"../utils/cheerio":1646969312979,"../models/home/assessment":1646969312980,"../utils/network":1646969312977,"../mocks/basics":1646969312981,"../utils/error":1646969312978}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969312975, function(require, module, exports) {
 
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -674,12 +674,12 @@ const roamingWrapperWithMocks = async (helper, policy, payload, operation, fallb
     ? Promise.resolve(fallback)
     : (0, exports.roamingWrapper)(helper, policy, payload, operation);
 exports.roamingWrapperWithMocks = roamingWrapperWithMocks;
-//# sourceMappingURL=core.js.map
-}, function(modId) { var map = {"../constants/strings":1646914021183,"../utils/network":1646914021184,"../utils/error":1646914021185}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021183, function(require, module, exports) {
+
+}, function(modId) { var map = {"../constants/strings":1646969312976,"../utils/network":1646969312977,"../utils/error":1646969312978}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969312976, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LIBRARY_ROOM_BOOKING_RECORD_URL = exports.LIBRARY_ROOM_BOOKING_ACTION_URL = exports.LIBRARY_FUZZY_SEARCH_ID_URL = exports.LIBRARY_ROOM_BOOKING_RESOURCE_LIST_URL_SUFFIX = exports.LIBRARY_ROOM_BOOKING_RESOURCE_LIST_URL_PREFIX = exports.LIBRARY_ROOM_BOOKING_LOGIN_URL = exports.LIBRARY_DAYS_URL = exports.LIBRARY_SEATS_URL = exports.LIBRARY_AREAS_URL = exports.LIBRARY_LIST_URL = exports.LIBRARY_HOME_URL = exports.BANK_PAYMENT_SEARCH_URL = exports.LOSE_CARD_URL = exports.CLASSROOM_STATE_MIDDLE = exports.CLASSROOM_STATE_PREFIX = exports.FILE_DOWNLOAD_URL = exports.NEWS_DETAIL_URL = exports.NEWS_REDIRECT_URL = exports.NEWS_LIST_URL = exports.SECONDARY_URL = exports.JXRL_SUFFIX = exports.JXRL_MIDDLE = exports.JXRL_YJS_PREFIX = exports.JXRL_BKS_PREFIX = exports.EXPENDITURE_URL = exports.ASSESSMENT_SUBMIT_URL = exports.ASSESSMENT_BASE_URL = exports.ASSESSMENT_LIST_URL = exports.ELE_REMAINDER_URL = exports.ALIPAY_URL_PREFIX = exports.ELE_PAY_RECORD_URL = exports.RECHARGE_PAY_ELE_URL = exports.RECHARGE_ELE_URL = exports.TSINGHUA_HOME_LOGIN_URL = exports.YJS_REPORT_BXR_URL = exports.BKS_REPORT_BXR_URL = exports.GET_YJS_REPORT_URL = exports.GET_BKS_REPORT_URL = exports.COUNT_DOWN_URL = exports.CALENDAR_URL = exports.LOGOUT_URL = exports.ROAMING_URL = exports.USER_DATA_URL = exports.GET_COOKIE_URL = exports.ID_LOGIN_URL = exports.ID_BASE_URL = exports.CONFIRM_LOGIN_URL = exports.DO_LOGIN_URL = exports.USER_AGENT = exports.CONTENT_TYPE_FORM = void 0;
+exports.LIBRARY_ROOM_BOOKING_RECORD_URL = exports.LIBRARY_ROOM_BOOKING_ACTION_URL = exports.LIBRARY_FUZZY_SEARCH_ID_URL = exports.LIBRARY_ROOM_BOOKING_RESOURCE_LIST_URL_SUFFIX = exports.LIBRARY_ROOM_BOOKING_RESOURCE_LIST_URL_PREFIX = exports.LIBRARY_ROOM_BOOKING_LOGIN_URL = exports.LIBRARY_DAYS_URL = exports.LIBRARY_SEATS_URL = exports.LIBRARY_AREAS_URL = exports.LIBRARY_LIST_URL = exports.LIBRARY_HOME_URL = exports.BANK_PAYMENT_SEARCH_URL = exports.LOSE_CARD_URL = exports.CLASSROOM_STATE_MIDDLE = exports.CLASSROOM_STATE_PREFIX = exports.KYTZ_MAIN_PREFIX = exports.HB_MAIN_PREFIX = exports.BGTZ_MAIN_PREFIX = exports.JWGG_MAIN_PREFIX = exports.SECONDARY_URL = exports.JXRL_SUFFIX = exports.JXRL_MIDDLE = exports.JXRL_YJS_PREFIX = exports.JXRL_BKS_PREFIX = exports.EXPENDITURE_URL = exports.ASSESSMENT_SUBMIT_URL = exports.ASSESSMENT_BASE_URL = exports.ASSESSMENT_LIST_URL = exports.ELE_REMAINDER_URL = exports.ALIPAY_URL_PREFIX = exports.ELE_PAY_RECORD_URL = exports.RECHARGE_PAY_ELE_URL = exports.RECHARGE_ELE_URL = exports.TSINGHUA_HOME_LOGIN_URL = exports.YJS_REPORT_BXR_URL = exports.BKS_REPORT_BXR_URL = exports.GET_YJS_REPORT_URL = exports.GET_BKS_REPORT_URL = exports.COUNT_DOWN_URL = exports.CALENDAR_URL = exports.LOGOUT_URL = exports.ROAMING_URL = exports.USER_DATA_URL = exports.GET_COOKIE_URL = exports.ID_LOGIN_URL = exports.ID_BASE_URL = exports.CONFIRM_LOGIN_URL = exports.DO_LOGIN_URL = exports.USER_AGENT = exports.CONTENT_TYPE_FORM = void 0;
 exports.WATER_SUB_URL = exports.WATER_USER_URL = exports.GITLAB_API_BASE_URL = exports.GITLAB_AUTH_URL = exports.GITLAB_LOGIN_URL = exports.SPORTS_PAYMENT_ACTION_URL = exports.SPORTS_PAYMENT_CHECK_URL = exports.SPORTS_MAKE_PAYMENT_URL = exports.SPORTS_MAKE_ORDER_URL = exports.SPORTS_CAPTCHA_BASE_URL = exports.SPORTS_UPDATE_PHONE_URL = exports.SPORTS_QUERY_PHONE_URL = exports.SPORTS_UNSUBSCRIBE_URL = exports.SPORTS_DETAIL_URL = exports.SPORTS_BASE_URL = exports.CR_TREE_URL = exports.CR_MAIN_URL = exports.COURSE_PLAN_URL_PREFIX = exports.CR_SEARCH_URL = exports.CR_LOGIN_SUBMIT_URL = exports.CR_LOGIN_HOME_URL = exports.CR_CAPTCHA_URL = exports.PHYSICAL_EXAM_URL = exports.CANCEL_BOOKING_URL = exports.LIBRARY_BOOK_RECORD_URL = exports.LIBRARY_BOOK_URL_SUFFIX = exports.LIBRARY_BOOK_URL_PREFIX = exports.LIBRARY_CANCEL_BOOKING_URL = void 0;
 exports.CONTENT_TYPE_FORM = "application/x-www-form-urlencoded";
 exports.USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36";
@@ -712,10 +712,10 @@ exports.JXRL_YJS_PREFIX = "https://webvpn.tsinghua.edu.cn/http/77726476706e69737
 exports.JXRL_MIDDLE = "&p_end_date=";
 exports.JXRL_SUFFIX = "&jsoncallback=m";
 exports.SECONDARY_URL = "https://webvpn.tsinghua.edu.cn/http/77726476706e69737468656265737421eaff4b8b69336153301c9aa596522b20bc86e6e559a9b290/portal3rd.do?m=bks_ejkbSearch";
-exports.NEWS_LIST_URL = "https://webvpn.tsinghua.edu.cn/https/77726476706e69737468656265737421f9f9479375603a01301c9aa596522b208e9cd9c9e383ff3f/b/info/xxfb_fg/xnzx/template/more?oType=mr&lydw=";
-exports.NEWS_REDIRECT_URL = "https://webvpn.tsinghua.edu.cn/https/77726476706e69737468656265737421f9f9479375603a01301c9aa596522b208e9cd9c9e383ff3f";
-exports.NEWS_DETAIL_URL = "https://webvpn.tsinghua.edu.cn/https/77726476706e69737468656265737421f9f9479375603a01301c9aa596522b208e9cd9c9e383ff3f/b/info/xxfb_fg/xnzx/template/detail";
-exports.FILE_DOWNLOAD_URL = "https://webvpn.tsinghua.edu.cn/https/77726476706e69737468656265737421f9f9479375603a01301c9aa596522b208e9cd9c9e383ff3f/b/info/wj/download/";
+exports.JWGG_MAIN_PREFIX = "https://webvpn.tsinghua.edu.cn/http/77726476706e69737468656265737421e0f852882e3e6e5f301c9aa596522b2043f84ba24ebecaf8/f/jiaowugonggao/more?page=";
+exports.BGTZ_MAIN_PREFIX = "https://webvpn.tsinghua.edu.cn/http/77726476706e69737468656265737421e0f852882e3e6e5f301c9aa596522b2043f84ba24ebecaf8/f/bangongtongzhi/more?field_bgtz_fl_tid=All&page=";
+exports.HB_MAIN_PREFIX = "https://webvpn.tsinghua.edu.cn/http/77726476706e69737468656265737421e0f852882e3e6e5f301c9aa596522b2043f84ba24ebecaf8/f/haibao/more?page=";
+exports.KYTZ_MAIN_PREFIX = "https://webvpn.tsinghua.edu.cn/http/77726476706e69737468656265737421e0f852882e3e6e5f301c9aa596522b2043f84ba24ebecaf8/f/keyantongzhi/more?field_kytz_fl_tid=All&page=";
 exports.CLASSROOM_STATE_PREFIX = "https://webvpn.tsinghua.edu.cn/http/77726476706e69737468656265737421eaff4b8b69336153301c9aa596522b20bc86e6e559a9b290/pk.classroomctrl.do?m=qyClassroomState&classroom=";
 exports.CLASSROOM_STATE_MIDDLE = "&weeknumber=";
 exports.LOSE_CARD_URL = "https://webvpn.tsinghua.edu.cn/http/77726476706e69737468656265737421f5f4408e237e7c4377068ea48d546d303341e9882a/user/RambleConsumeLog.do?losscard=true";
@@ -759,15 +759,15 @@ exports.GITLAB_AUTH_URL = "https://webvpn.tsinghua.edu.cn/https/77726476706e6973
 exports.GITLAB_API_BASE_URL = "https://webvpn.tsinghua.edu.cn/https/77726476706e69737468656265737421f7fe55d23323615e79009cadd6502720b178f0/api/v4";
 exports.WATER_USER_URL = "http://dingshui.bjqzhd.com/auser/getuser.html";
 exports.WATER_SUB_URL = "http://dingshui.bjqzhd.com/buy/subs.html";
-//# sourceMappingURL=strings.js.map
+
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021184, function(require, module, exports) {
+__DEFINE__(1646969312977, function(require, module, exports) {
 
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getRedirectUrl = exports.uFetch = exports.stringify = exports.arbitraryEncode = exports.clearCookies = exports.cookies = void 0;
+exports.uFetch = exports.stringify = exports.arbitraryEncode = exports.clearCookies = exports.cookies = void 0;
 const strings_1 = require("../constants/strings");
 const iconv_lite_1 = __importDefault(require("iconv-lite"));
 const cross_fetch_1 = __importDefault(require("cross-fetch"));
@@ -913,61 +913,9 @@ const uFetch = async (url, post, timeout = 60000, paramEncoding = "UTF-8", seria
     }
 };
 exports.uFetch = uFetch;
-const getRedirectUrl = async (url, timeout = 60000) => {
-    if (global.FileReader) {
-        // For browser and react-native
-        return new Promise((resolve) => {
-            const req = new XMLHttpRequest();
-            req.onreadystatechange = () => {
-                var _a;
-                if (req.readyState === req.DONE) {
-                    resolve((_a = req.responseURL) !== null && _a !== void 0 ? _a : "");
-                }
-            };
-            req.open("GET", url);
-            req.send();
-        });
-    }
-    // Prepare request headers
-    const defaultHeaders = {
-        // Setup content-type and user-agent
-        "Content-Type": strings_1.CONTENT_TYPE_FORM,
-        "User-Agent": strings_1.USER_AGENT,
-    };
-    const headers = global.FileReader === undefined ? {
-        ...defaultHeaders,
-        // Cookie should be manually set in Node.js
-        Cookie: Object.keys(exports.cookies).map((key) => `${key}=${exports.cookies[key]}`).join(";"),
-    } : defaultHeaders;
-    // Handle timeout abortion
-    const controller = new abort_controller_1.default();
-    const timeoutEvent = setTimeout(() => {
-        controller.abort();
-    }, timeout);
-    const init = {
-        headers: headers,
-        signal: controller.signal,
-        redirect: "manual" // Set the redirect mode to "manual" so fetch won't follow the http redirection
-    };
-    // Perform the network request
-    try {
-        const response = await (0, cross_fetch_1.default)(url, init);
-        if (response.status !== 301 && response.status !== 302) {
-            throw new error_1.ResponseStatusError(`Unexpected response status code: ${response.status}`);
-        }
-        // Get the redirection target url in header "Location" and return it
-        const location = response.headers.get("Location");
-        return location !== null && location !== void 0 ? location : "";
-    }
-    finally {
-        // We have to clear the timeout
-        clearTimeout(timeoutEvent);
-    }
-};
-exports.getRedirectUrl = getRedirectUrl;
-//# sourceMappingURL=network.js.map
-}, function(modId) { var map = {"../constants/strings":1646914021183,"./error":1646914021185}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021185, function(require, module, exports) {
+
+}, function(modId) { var map = {"../constants/strings":1646969312976,"./error":1646969312978}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969312978, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ScheduleError = exports.GitLabApiError = exports.ResponseStatusError = exports.UserInfoError = exports.CabError = exports.IdAuthError = exports.SportsError = exports.LibraryError = exports.EleError = exports.LoseCardError = exports.ClassroomStateError = exports.AssessmentError = exports.ReportError = exports.UrlError = exports.LoginError = exports.LibError = void 0;
@@ -1037,9 +985,9 @@ exports.GitLabApiError = GitLabApiError;
 class ScheduleError extends LibError {
 }
 exports.ScheduleError = ScheduleError;
-//# sourceMappingURL=error.js.map
+
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021186, function(require, module, exports) {
+__DEFINE__(1646969312979, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getCheerioText = void 0;
@@ -1050,9 +998,9 @@ const getCheerioText = (element, index) => {
         : (_f = (_e = (_d = element.children[index].firstChild) === null || _d === void 0 ? void 0 : _d.data) === null || _e === void 0 ? void 0 : _e.trim()) !== null && _f !== void 0 ? _f : "";
 };
 exports.getCheerioText = getCheerioText;
-//# sourceMappingURL=cheerio.js.map
+
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021187, function(require, module, exports) {
+__DEFINE__(1646969312980, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.toPersons = exports.Form = exports.Person = exports.Overall = exports.InputTag = void 0;
@@ -1219,9 +1167,9 @@ const toPersons = (tables) => {
     return persons;
 };
 exports.toPersons = toPersons;
-//# sourceMappingURL=assessment.js.map
-}, function(modId) { var map = {"../../utils/error":1646914021185}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021188, function(require, module, exports) {
+
+}, function(modId) { var map = {"../../utils/error":1646969312978}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969312981, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MOCK_CALENDAR_DATA = exports.MOCK_BANK_PAYMENT = exports.MOCK_LOSE_CARD_CODE = exports.MOCK_CLASSROOM_STATE = exports.MOCK_EXPENDITURES = exports.MOCK_PHYSICAL_EXAM_RESULT = exports.MOCK_ASSESSMENT_FORM = exports.MOCK_ASSESSMENT_LIST = exports.MOCK_REPORT = void 0;
@@ -1687,9 +1635,9 @@ exports.MOCK_CALENDAR_DATA = {
     semesterId: "2021-2022-1",
     weekCount: 18,
 };
-//# sourceMappingURL=basics.js.map
-}, function(modId) { var map = {"../models/home/assessment":1646914021187}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021189, function(require, module, exports) {
+
+}, function(modId) { var map = {"../models/home/assessment":1646969312980}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969312982, function(require, module, exports) {
 
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -1743,9 +1691,9 @@ const getEleRemainder = async (helper) => (0, core_1.roamingWrapperWithMocks)(he
     return Number($("#Netweb_Home_electricity_DetailCtrl1_lblele").text().trim());
 }, dorm_1.MOCK_ELE_REMAINDER);
 exports.getEleRemainder = getEleRemainder;
-//# sourceMappingURL=dorm.js.map
-}, function(modId) { var map = {"./core":1646914021182,"../constants/strings":1646914021183,"../utils/alipay":1646914021190,"../utils/cheerio":1646914021186,"../utils/network":1646914021184,"../mocks/dorm":1646914021191,"../utils/error":1646914021185}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021190, function(require, module, exports) {
+
+}, function(modId) { var map = {"./core":1646969312975,"../constants/strings":1646969312976,"../utils/alipay":1646969312983,"../utils/cheerio":1646969312979,"../utils/network":1646969312977,"../mocks/dorm":1646969312984,"../utils/error":1646969312978}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969312983, function(require, module, exports) {
 
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -1768,9 +1716,9 @@ const generalGetPayCode = async (paymentHtml, encoding) => {
 exports.generalGetPayCode = generalGetPayCode;
 const genAlipayUrl = (payCode) => strings_1.ALIPAY_URL_PREFIX + payCode;
 exports.genAlipayUrl = genAlipayUrl;
-//# sourceMappingURL=alipay.js.map
-}, function(modId) { var map = {"./network":1646914021184,"cheerio":1646914021186,"../constants/strings":1646914021183}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021191, function(require, module, exports) {
+
+}, function(modId) { var map = {"./network":1646969312977,"cheerio":1646969312979,"../constants/strings":1646969312976}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969312984, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MOCK_ELE_REMAINDER = exports.MOCK_ELE_PAY_RECORD = void 0;
@@ -1784,9 +1732,9 @@ exports.MOCK_ELE_PAY_RECORD = [
     ["", "6", "2020-08-22 23:12:49", "", "5.00", "已成功"],
 ];
 exports.MOCK_ELE_REMAINDER = 88;
-//# sourceMappingURL=dorm.js.map
+
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021192, function(require, module, exports) {
+__DEFINE__(1646969312985, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.postWaterSubmission = exports.getUserInformationAndStore = exports.getUserInformation = void 0;
@@ -1819,9 +1767,9 @@ const postWaterSubmission = (water, num, num1, lid) => (0, network_1.uFetch)(str
     }
 });
 exports.postWaterSubmission = postWaterSubmission;
-//# sourceMappingURL=water.js.map
-}, function(modId) { var map = {"../constants/strings":1646914021183,"../utils/network":1646914021184}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021193, function(require, module, exports) {
+
+}, function(modId) { var map = {"../constants/strings":1646969312976,"../utils/network":1646969312977}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969312986, function(require, module, exports) {
 
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -2090,9 +2038,9 @@ const cancelLibraryRoomBooking = async (helper, id) => (0, core_1.roamingWrapper
     return { success: result.ret === 1, msg: result.msg };
 }, { success: true, msg: "操作成功！" });
 exports.cancelLibraryRoomBooking = cancelLibraryRoomBooking;
-//# sourceMappingURL=library.js.map
-}, function(modId) { var map = {"./core":1646914021182,"../constants/strings":1646914021183,"../models/home/library":1646914021194,"../utils/cheerio":1646914021186,"../utils/network":1646914021184,"../mocks/library":1646914021195,"../utils/error":1646914021185}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021194, function(require, module, exports) {
+
+}, function(modId) { var map = {"./core":1646969312975,"../constants/strings":1646969312976,"../models/home/library":1646969312987,"../utils/cheerio":1646969312979,"../utils/network":1646969312977,"../mocks/library":1646969312988,"../utils/error":1646969312978}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969312987, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.validLibName = exports.byId = exports.weightedValidityAndId = void 0;
@@ -2103,9 +2051,9 @@ exports.byId = byId;
 exports.validLibName = [
     "NORTH", "WEST", "LAW", "SOCIAL"
 ];
-//# sourceMappingURL=library.js.map
+
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021195, function(require, module, exports) {
+__DEFINE__(1646969312988, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MOCK_LIB_ROOM_RECORD = exports.MOCK_LIB_SEARCH_RES = exports.MOCK_LIB_ROOM_RES_LIST = exports.MOCK_LIBRARY_BOOKING_RECORDS = exports.MOCK_LIBRARY_BOOK_SEAT_RESPONSE = exports.MOCK_LIBRARY_ACCESS_TOKEN = exports.MOCK_LIBRARY_FLOOR_LIST = exports.MOCK_LIBRARY_LIST = void 0;
@@ -2727,43 +2675,49 @@ exports.MOCK_LIB_ROOM_RECORD = [
         rsvId: "12925682"
     }
 ];
-//# sourceMappingURL=library.js.map
+
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021196, function(require, module, exports) {
+__DEFINE__(1646969312989, function(require, module, exports) {
 
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getNewsDetail = exports.getNewsList = void 0;
-const core_1 = require("../lib/core");
 const network_1 = require("../utils/network");
-const strings_1 = require("../constants/strings");
-const newsHtml_1 = require("../mocks/source/newsHtml");
 const cheerio_1 = __importDefault(require("cheerio"));
-/**
- * Get News List
- * @param helper
- * @param page
- * @param length
- * @param channel
- * @returns Array of NewsSlice
- */
-const getNewsList = async (helper, page, length, channel) => {
+const newsHtml_1 = require("../mocks/source/newsHtml");
+const cheerio_2 = require("../utils/cheerio");
+const core_1 = require("./core");
+const news_1 = require("../mocks/news");
+const strings_1 = require("../constants/strings");
+const channelToUrl = {
+    "JWGG": strings_1.JWGG_MAIN_PREFIX,
+    "BGTZ": strings_1.BGTZ_MAIN_PREFIX,
+    "KYTZ": strings_1.KYTZ_MAIN_PREFIX,
+    "HB": strings_1.HB_MAIN_PREFIX,
+};
+const getNewsList = (helper, channel, page) => (0, core_1.roamingWrapperWithMocks)(helper, undefined, "", () => (0, network_1.uFetch)(channelToUrl[channel] + page).then((str) => {
+    const $ = cheerio_1.default.load(str);
     const newsList = [];
-    const json = await (0, network_1.uFetch)(`${strings_1.NEWS_LIST_URL}&lmid=${channel !== null && channel !== void 0 ? channel : "all"}&currentPage=${page}&length=${length}&_csrf=${await (0, core_1.getCsrfToken)()}`);
-    const data = JSON.parse(json);
-    data.object.dataList.forEach(element => {
-        newsList.push({
-            name: parseXmlEscape(element.bt),
-            url: parseXmlEscape(element.url),
-            date: element.time,
-            source: element.dwmc,
-            channel: element.lmid
-        });
+    $("ul.cont_list > li", str).each((_, item) => {
+        var _a, _b, _c;
+        if (item.type === "tag" && item.children[3].type === "tag") {
+            let newsUrl = item.children[3].attribs.href;
+            if (newsUrl[0] === "/") {
+                newsUrl = "https://webvpn.tsinghua.edu.cn" + newsUrl;
+            }
+            newsList.push({
+                name: (0, cheerio_2.getCheerioText)(item, 3),
+                url: newsUrl,
+                date: (0, cheerio_2.getCheerioText)(item, 7),
+                source: (_c = (_a = item.children[4].data) === null || _a === void 0 ? void 0 : _a.substr(3, ((_b = item.children[4].data) === null || _b === void 0 ? void 0 : _b.length) - 5)) !== null && _c !== void 0 ? _c : "",
+                channel,
+            });
+        }
     });
     return newsList;
-};
+}), (0, news_1.MOCK_NEWS_LIST)(channel));
 exports.getNewsList = getNewsList;
 const policyList = [
     ["jwcbg", [".TD4", "td[colspan=4]:not(td[height])"]],
@@ -2838,45 +2792,7 @@ const getNewsDetailPolicy = (url) => {
     }
     return [undefined, undefined];
 };
-const parseXmlEscape = (text) => {
-    let result = text.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&").replace(/&apos;/g, "'").replace(/&quot;/g, "\"").replace(/&nbsp;/g, " ");
-    const matches = result.match(/&#[0-9]+;/g);
-    if (!matches)
-        return result;
-    matches.forEach(m => {
-        var _a;
-        const number = (_a = /[0-9]+/.exec(m)) === null || _a === void 0 ? void 0 : _a[0];
-        const char = String.fromCharCode(Number(number));
-        result = result.replace(m, char);
-    });
-    return result;
-};
-const handleNewApiNews = async (url) => {
-    var _a;
-    const html = await (0, network_1.uFetch)(url);
-    const csrf = await (0, core_1.getCsrfToken)();
-    const xxid = (_a = /(?<=var xxid = ").*?(?=";)/.exec(html)) === null || _a === void 0 ? void 0 : _a[0];
-    const resp = await (0, network_1.uFetch)(`${strings_1.NEWS_DETAIL_URL}?xxid=${xxid}&preview=false&_csrf=${csrf}`);
-    const data = JSON.parse(resp);
-    const title = parseXmlEscape(data.object.xxDto.bt);
-    let content = "<div>" + parseXmlEscape(data.object.xxDto.nr);
-    if (data.object.xxDto.fjs_template) {
-        data.object.xxDto.fjs_template.forEach(file => {
-            content += `<a href="${strings_1.FILE_DOWNLOAD_URL + file.wjid}?_csrf=${csrf}">${file.wjmc}</a>`;
-        });
-    }
-    content += "</div>";
-    const jianjie = parseXmlEscape(data.object.xxDto.nr).replace(/<[^>]+>/g, "");
-    return [title, content, jianjie];
-};
 const getNewsDetail = async (helper, url) => {
-    if (url.includes("xxid"))
-        return await handleNewApiNews(strings_1.NEWS_REDIRECT_URL + url);
-    else
-        return await getNewsDetailOld(helper, await (0, network_1.getRedirectUrl)(strings_1.NEWS_REDIRECT_URL + url));
-};
-exports.getNewsDetail = getNewsDetail;
-const getNewsDetailOld = async (helper, url) => {
     var _a, _b;
     const [title, content] = getNewsDetailPolicy(url);
     const html = helper.mocked() ? (_a = newsHtml_1.newsHtml[url]) !== null && _a !== void 0 ? _a : "" : await (0, network_1.uFetch)(url);
@@ -2892,9 +2808,10 @@ const getNewsDetailOld = async (helper, url) => {
         return ["", html, ""];
     }
 };
-//# sourceMappingURL=news.js.map
-}, function(modId) { var map = {"../lib/core":1646914021182,"../utils/network":1646914021184,"../constants/strings":1646914021183,"../mocks/source/newsHtml":1646914021197}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021197, function(require, module, exports) {
+exports.getNewsDetail = getNewsDetail;
+
+}, function(modId) { var map = {"../utils/network":1646969312977,"../mocks/source/newsHtml":1646969312990,"../utils/cheerio":1646969312979,"./core":1646969312975,"../mocks/news":1646969313001,"../constants/strings":1646969312976}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969312990, function(require, module, exports) {
 
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -2932,9 +2849,9 @@ exports.newsHtml[exports.url6] = _6_1.default;
 exports.newsHtml[exports.url7] = _7_1.default;
 exports.newsHtml[exports.url8] = _8_1.default;
 exports.newsHtml[exports.url9] = _9_1.default;
-//# sourceMappingURL=newsHtml.js.map
-}, function(modId) { var map = {"./0":1646914021198,"./1":1646914021199,"./2":1646914021200,"./3":1646914021201,"./4":1646914021202,"./5":1646914021203,"./6":1646914021204,"./7":1646914021205,"./8":1646914021206,"./9":1646914021207}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021198, function(require, module, exports) {
+
+}, function(modId) { var map = {"./0":1646969312991,"./1":1646969312992,"./2":1646969312993,"./3":1646969312994,"./4":1646969312995,"./5":1646969312996,"./6":1646969312997,"./7":1646969312998,"./8":1646969312999,"./9":1646969313000}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969312991, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = `
@@ -3317,9 +3234,9 @@ function searchBlur(text){
 </body>
 </html>
 `;
-//# sourceMappingURL=0.js.map
+
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021199, function(require, module, exports) {
+__DEFINE__(1646969312992, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = `
@@ -3516,9 +3433,9 @@ function chuanold(oldid,nrid)
 </body>
 </html>
 `;
-//# sourceMappingURL=1.js.map
+
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021200, function(require, module, exports) {
+__DEFINE__(1646969312993, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = `
@@ -3766,9 +3683,9 @@ function chuanold(oldid,nrid)
 </html>
     
 `;
-//# sourceMappingURL=2.js.map
+
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021201, function(require, module, exports) {
+__DEFINE__(1646969312994, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = `
@@ -3935,9 +3852,9 @@ function chuanold(oldid,nrid)
 </html>
 
 `;
-//# sourceMappingURL=3.js.map
+
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021202, function(require, module, exports) {
+__DEFINE__(1646969312995, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = `
@@ -4135,9 +4052,9 @@ body {
 </html>
 
 `;
-//# sourceMappingURL=4.js.map
+
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021203, function(require, module, exports) {
+__DEFINE__(1646969312996, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = `
@@ -4328,9 +4245,9 @@ body {
 </table> 
 </body>
 </html>`;
-//# sourceMappingURL=5.js.map
+
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021204, function(require, module, exports) {
+__DEFINE__(1646969312997, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = `
@@ -4481,9 +4398,9 @@ exports.default = `
   </tr>
 </table>
 `;
-//# sourceMappingURL=6.js.map
+
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021205, function(require, module, exports) {
+__DEFINE__(1646969312998, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = `
@@ -4693,9 +4610,9 @@ jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":
 </html>
 
 `;
-//# sourceMappingURL=7.js.map
+
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021206, function(require, module, exports) {
+__DEFINE__(1646969312999, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = `
@@ -4881,9 +4798,9 @@ body {
 </html>
 
 `;
-//# sourceMappingURL=8.js.map
+
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021207, function(require, module, exports) {
+__DEFINE__(1646969313000, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = `
@@ -5070,9 +4987,102 @@ jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","ajaxPageState":
 </html>
 
 `;
-//# sourceMappingURL=9.js.map
+
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021208, function(require, module, exports) {
+__DEFINE__(1646969313001, function(require, module, exports) {
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.MOCK_NEWS_LIST = void 0;
+const newsHtml_1 = require("./source/newsHtml");
+const MOCK_NEWS_LIST = (channel) => {
+    switch (channel) {
+        case "JWGG":
+            return [
+                {
+                    channel: "JWGG",
+                    date: "2020.09.16",
+                    name: "博士生思政课“中国马克思主义与当代”扩容通知",
+                    source: "研究生院",
+                    url: newsHtml_1.url0,
+                },
+                {
+                    channel: "JWGG",
+                    date: "2020.09.14",
+                    name: "研究生补退选时间安排（2020-2021秋）",
+                    source: "教务处",
+                    url: newsHtml_1.url1,
+                },
+                {
+                    channel: "JWGG",
+                    date: "2020.09.14",
+                    name: "本科生补退选时间安排（2020-2021秋）",
+                    source: "教务处",
+                    url: newsHtml_1.url2,
+                },
+                {
+                    channel: "JWGG",
+                    date: "2020.09.14",
+                    name: "2020-2021学年秋季学期SRT立项通知",
+                    source: "教务处",
+                    url: newsHtml_1.url3,
+                },
+            ];
+        case "BGTZ":
+            return [
+                {
+                    channel: "BGTZ",
+                    date: "2020.09.17",
+                    name: "第二十二届清华大学创业大赛参赛报名通知",
+                    source: "校团委",
+                    url: newsHtml_1.url4,
+                },
+                {
+                    channel: "BGTZ",
+                    date: "2020.09.17",
+                    name: "清华大学“启·创”学生创业人才培育计划八期公开招募通知",
+                    source: "校团委",
+                    url: newsHtml_1.url5,
+                },
+                {
+                    channel: "BGTZ",
+                    date: "2020.09.17",
+                    name: "关于召开2020年度人事工作会的通知",
+                    source: "人事处",
+                    url: newsHtml_1.url6,
+                },
+            ];
+        case "HB":
+            return [
+                {
+                    channel: "HB",
+                    date: "2020.09.17",
+                    name: "2020年10月三场“LIVE 逍遥夜”演出开票公告",
+                    source: "艺教中心办公室",
+                    url: newsHtml_1.url7,
+                },
+                {
+                    channel: "HB",
+                    date: "2020.09.15",
+                    name: "清华大学“唯真讲坛”系列在线理论宣讲活动第二十讲 当前的国际形势与热点问题",
+                    source: "党委宣传部",
+                    url: newsHtml_1.url8,
+                },
+                {
+                    channel: "HB",
+                    date: "2020.09.14",
+                    name: "金融科技还是科技金融？——数字刀如何切开金融蛋糕|清华五道口云课堂之金融大家评·华尔街热线（第15期）",
+                    source: "五道口金融学院综合办公室",
+                    url: newsHtml_1.url9,
+                },
+            ];
+        default:
+            return [];
+    }
+};
+exports.MOCK_NEWS_LIST = MOCK_NEWS_LIST;
+
+}, function(modId) { var map = {"./source/newsHtml":1646969312990}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969313002, function(require, module, exports) {
 
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -5116,9 +5126,9 @@ const getSchedule = async (helper) => {
     return scheduleList;
 };
 exports.getSchedule = getSchedule;
-//# sourceMappingURL=schedule.js.map
-}, function(modId) { var map = {"./core":1646914021182,"../constants/strings":1646914021183,"../models/schedule/schedule":1646914021209,"../utils/network":1646914021184,"../mocks/schedule":1646914021210,"../utils/error":1646914021185,"./basics":1646914021181}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021209, function(require, module, exports) {
+
+}, function(modId) { var map = {"./core":1646969312975,"../constants/strings":1646969312976,"../models/schedule/schedule":1646969313003,"../utils/network":1646969312977,"../mocks/schedule":1646969313004,"../utils/error":1646969312978,"./basics":1646969312974}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969313003, function(require, module, exports) {
 
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -5440,9 +5450,9 @@ const parseScript = (script, verbose = false) => {
     return verbose ? verboseResult : result;
 };
 exports.parseScript = parseScript;
-//# sourceMappingURL=schedule.js.map
+
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021210, function(require, module, exports) {
+__DEFINE__(1646969313004, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MOCK_SECONDARY_SCHEDULE = exports.MOCK_PRIMARY_SCHEDULE = void 0;
@@ -5600,9 +5610,9 @@ exports.MOCK_PRIMARY_SCHEDULE = [
     },
 ];
 exports.MOCK_SECONDARY_SCHEDULE = [];
-//# sourceMappingURL=schedule.js.map
-}, function(modId) { var map = {"../models/schedule/schedule":1646914021209}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021211, function(require, module, exports) {
+
+}, function(modId) { var map = {"../models/schedule/schedule":1646969313003}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969313005, function(require, module, exports) {
 
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -5819,9 +5829,9 @@ exports.sportsIdInfoList = [
         itemId: "10120539",
     },
 ];
-//# sourceMappingURL=sports.js.map
-}, function(modId) { var map = {"./core":1646914021182,"../utils/network":1646914021184,"../constants/strings":1646914021183,"../mocks/sports":1646914021212,"../utils/alipay":1646914021190,"../utils/cheerio":1646914021186,"../utils/error":1646914021185}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021212, function(require, module, exports) {
+
+}, function(modId) { var map = {"./core":1646969312975,"../utils/network":1646969312977,"../constants/strings":1646969312976,"../mocks/sports":1646969313006,"../utils/alipay":1646969312983,"../utils/cheerio":1646969312979,"../utils/error":1646969312978}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969313006, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MOCK_RECORDS = exports.MOCK_RESOURCES = void 0;
@@ -6091,9 +6101,9 @@ exports.MOCK_RECORDS = [
         bookId: undefined
     }
 ];
-//# sourceMappingURL=sports.js.map
+
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021213, function(require, module, exports) {
+__DEFINE__(1646969313007, function(require, module, exports) {
 
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -6274,9 +6284,9 @@ const searchCrCourses = async (helper, params) => {
     };
 };
 exports.searchCrCourses = searchCrCourses;
-//# sourceMappingURL=cr.js.map
-}, function(modId) { var map = {"../constants/strings":1646914021183,"../utils/network":1646914021184,"../utils/cheerio":1646914021186}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021214, function(require, module, exports) {
+
+}, function(modId) { var map = {"../constants/strings":1646969312976,"../utils/network":1646969312977,"../utils/cheerio":1646969312979}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969313008, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.renderMarkdown = exports.getProjectFileBlob = exports.getProjectBranches = exports.getProjectTree = exports.getProjectDetail = exports.searchProjects = exports.getStarredProjects = exports.getPersonalProjects = exports.getRecentProjects = exports.getNamespaces = void 0;
@@ -6371,18 +6381,18 @@ const renderMarkdown = async (helper, text) => (0, core_1.roamingWrapperWithMock
     return (await fetchGitLab("/markdown", undefined, { text })).html;
 }, "");
 exports.renderMarkdown = renderMarkdown;
-//# sourceMappingURL=gitlab.js.map
-}, function(modId) { var map = {"./core":1646914021182,"../utils/network":1646914021184,"../constants/strings":1646914021183,"../utils/error":1646914021185,"../mocks/gitlab":1646914021215}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021215, function(require, module, exports) {
+
+}, function(modId) { var map = {"./core":1646969312975,"../utils/network":1646969312977,"../constants/strings":1646969312976,"../utils/error":1646969312978,"../mocks/gitlab":1646969313009}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969313009, function(require, module, exports) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MOCK_GIT_PERSONAL_PROJECTS = exports.MOCK_GIT_RECENT_PROJECTS = exports.MOCK_GIT_NAMESPACES = void 0;
 exports.MOCK_GIT_NAMESPACES = [];
 exports.MOCK_GIT_RECENT_PROJECTS = [];
 exports.MOCK_GIT_PERSONAL_PROJECTS = [];
-//# sourceMappingURL=gitlab.js.map
+
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-return __REQUIRE__(1646914021180);
+return __REQUIRE__(1646969312973);
 })()
 //miniprogram-npm-outsideDeps=["cheerio","xlsx","dayjs","iconv-lite","cross-fetch","abort-controller"]
 //# sourceMappingURL=index.js.map

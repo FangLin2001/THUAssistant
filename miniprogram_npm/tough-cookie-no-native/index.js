@@ -4,7 +4,7 @@ var __DEFINE__ = function(modId, func, req) { var m = { exports: {}, _tempexport
 var __REQUIRE__ = function(modId, source) { if(!__MODS__[modId]) return require(source); if(!__MODS__[modId].status) { var m = __MODS__[modId].m; m._exports = m._tempexports; var desp = Object.getOwnPropertyDescriptor(m, "exports"); if (desp && desp.configurable) Object.defineProperty(m, "exports", { set: function (val) { if(typeof val === "object" && val !== m._exports) { m._exports.__proto__ = val.__proto__; Object.keys(val).forEach(function (k) { m._exports[k] = val[k]; }); } m._tempexports = val }, get: function () { return m._tempexports; } }); __MODS__[modId].status = 1; __MODS__[modId].func(__MODS__[modId].req, m, m.exports); } return __MODS__[modId].m.exports; };
 var __REQUIRE_WILDCARD__ = function(obj) { if(obj && obj.__esModule) { return obj; } else { var newObj = {}; if(obj != null) { for(var k in obj) { if (Object.prototype.hasOwnProperty.call(obj, k)) newObj[k] = obj[k]; } } newObj.default = obj; return newObj; } };
 var __REQUIRE_DEFAULT__ = function(obj) { return obj && obj.__esModule ? obj.default : obj; };
-__DEFINE__(1646914021220, function(require, module, exports) {
+__DEFINE__(1646969313014, function(require, module, exports) {
 /*!
  * Copyright (c) 2015, Salesforce.com, Inc.
  * All rights reserved.
@@ -1398,8 +1398,8 @@ module.exports = {
   canonicalDomain: canonicalDomain
 };
 
-}, function(modId) {var map = {"./store":1646914021221,"./memstore":1646914021222,"./pathMatch":1646914021224,"../package.json":1646914021225,"./permuteDomain":1646914021223}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021221, function(require, module, exports) {
+}, function(modId) {var map = {"./store":1646969313015,"./memstore":1646969313016,"./pathMatch":1646969313018,"../package.json":1646969313019,"./permuteDomain":1646969313017}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969313015, function(require, module, exports) {
 /*!
  * Copyright (c) 2015, Salesforce.com, Inc.
  * All rights reserved.
@@ -1473,7 +1473,7 @@ Store.prototype.getAllCookies = function(cb) {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021222, function(require, module, exports) {
+__DEFINE__(1646969313016, function(require, module, exports) {
 /*!
  * Copyright (c) 2015, Salesforce.com, Inc.
  * All rights reserved.
@@ -1645,8 +1645,8 @@ MemoryCookieStore.prototype.getAllCookies = function(cb) {
   cb(null, cookies);
 };
 
-}, function(modId) { var map = {"./store":1646914021221,"./permuteDomain":1646914021223,"./pathMatch":1646914021224}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021223, function(require, module, exports) {
+}, function(modId) { var map = {"./store":1646969313015,"./permuteDomain":1646969313017,"./pathMatch":1646969313018}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969313017, function(require, module, exports) {
 /*!
  * Copyright (c) 2015, Salesforce.com, Inc.
  * All rights reserved.
@@ -1688,7 +1688,7 @@ function permuteDomain(domain) {
 exports.permuteDomain = permuteDomain;
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021224, function(require, module, exports) {
+__DEFINE__(1646969313018, function(require, module, exports) {
 /*!
  * Copyright (c) 2015, Salesforce.com, Inc.
  * All rights reserved.
@@ -1752,7 +1752,7 @@ function pathMatch (reqPath, cookiePath) {
 exports.pathMatch = pathMatch;
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021225, function(require, module, exports) {
+__DEFINE__(1646969313019, function(require, module, exports) {
 module.exports = {
   "author": {
     "name": "Jonny Burger",
@@ -1804,7 +1804,7 @@ module.exports = {
 }
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-return __REQUIRE__(1646914021220);
+return __REQUIRE__(1646969313014);
 })()
 //miniprogram-npm-outsideDeps=["is-ip","url","punycode","util"]
 //# sourceMappingURL=index.js.map

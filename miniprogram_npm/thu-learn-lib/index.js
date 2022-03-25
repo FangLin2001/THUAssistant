@@ -4,7 +4,7 @@ var __DEFINE__ = function(modId, func, req) { var m = { exports: {}, _tempexport
 var __REQUIRE__ = function(modId, source) { if(!__MODS__[modId]) return require(source); if(!__MODS__[modId].status) { var m = __MODS__[modId].m; m._exports = m._tempexports; var desp = Object.getOwnPropertyDescriptor(m, "exports"); if (desp && desp.configurable) Object.defineProperty(m, "exports", { set: function (val) { if(typeof val === "object" && val !== m._exports) { m._exports.__proto__ = val.__proto__; Object.keys(val).forEach(function (k) { m._exports[k] = val[k]; }); } m._tempexports = val }, get: function () { return m._tempexports; } }); __MODS__[modId].status = 1; __MODS__[modId].func(__MODS__[modId].req, m, m.exports); } return __MODS__[modId].m.exports; };
 var __REQUIRE_WILDCARD__ = function(obj) { if(obj && obj.__esModule) { return obj; } else { var newObj = {}; if(obj != null) { for(var k in obj) { if (Object.prototype.hasOwnProperty.call(obj, k)) newObj[k] = obj[k]; } } newObj.default = obj; return newObj; } };
 var __REQUIRE_DEFAULT__ = function(obj) { return obj && obj.__esModule ? obj.default : obj; };
-__DEFINE__(1646914021216, function(require, module, exports) {
+__DEFINE__(1646969313010, function(require, module, exports) {
 var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
     if (kind === "m") throw new TypeError("Private method is not writable");
     if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
@@ -561,8 +561,8 @@ if (!exports.__esModule) Object.defineProperty(exports, "__esModule", { value: t
 };exports.Learn2018Helper = Learn2018Helper
 _Learn2018Helper_provider = new WeakMap(), _Learn2018Helper_rawFetch = new WeakMap(), _Learn2018Helper_myFetch = new WeakMap(), _Learn2018Helper_myFetchWithToken = new WeakMap(), _Learn2018Helper_csrfToken = new WeakMap(), _Learn2018Helper_withReAuth = new WeakMap();
 
-}, function(modId) {var map = {"./urls.js":1646914021217,"./types.js":1646914021218,"./utils.js":1646914021219}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021217, function(require, module, exports) {
+}, function(modId) {var map = {"./urls.js":1646969313011,"./types.js":1646969313012,"./utils.js":1646969313013}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969313011, function(require, module, exports) {
 var __TEMP__ = require('form-data');var FormData = __REQUIRE_DEFAULT__(__TEMP__);
 var __TEMP__ = require('./types.js');var CourseType = __TEMP__['CourseType'];
 var __TEMP__ = require('./utils.js');var getMkFromType = __TEMP__['getMkFromType'];
@@ -724,8 +724,8 @@ if (!exports.__esModule) Object.defineProperty(exports, "__esModule", { value: t
     return `${REGISTRAR_PREFIX}/jxmh_out.do?m=${graduate ? 'yjs' : 'bks'}_jxrl_all&p_start_date=${startDate}&p_end_date=${endDate}&jsoncallback=${callbackName}`;
 };
 
-}, function(modId) { var map = {"./types.js":1646914021218,"./utils.js":1646914021219}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021218, function(require, module, exports) {
+}, function(modId) { var map = {"./types.js":1646969313012,"./utils.js":1646969313013}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1646969313012, function(require, module, exports) {
 if (!exports.__esModule) Object.defineProperty(exports, "__esModule", { value: true });var FailReason = exports.FailReason = undefined;
 (function (FailReason) {
     FailReason["NO_CREDENTIAL"] = "no credential provided";
@@ -759,7 +759,7 @@ if (!exports.__esModule) Object.defineProperty(exports, "__esModule", { value: t
 })(CourseType || (CourseType = {}));
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1646914021219, function(require, module, exports) {
+__DEFINE__(1646969313013, function(require, module, exports) {
 var __TEMP__ = require('entities');var _decodeHTML = __TEMP__['decodeHTML'];
 var __TEMP__ = require('./types.js');var SemesterType = __TEMP__['SemesterType'];var FailReason = __TEMP__['FailReason'];var ContentType = __TEMP__['ContentType'];
 if (!exports.__esModule) Object.defineProperty(exports, "__esModule", { value: true });function parseSemesterType(n) {
@@ -850,8 +850,8 @@ if (!exports.__esModule) Object.defineProperty(exports, "__esModule", { value: t
     return Function(`"use strict";const ${JSONP_EXTRACTOR_NAME}=(s)=>s;return ${jsonp};`)();
 };exports.extractJSONPResult = extractJSONPResult
 
-}, function(modId) { var map = {"./types.js":1646914021218}; return __REQUIRE__(map[modId], modId); })
-return __REQUIRE__(1646914021216);
+}, function(modId) { var map = {"./types.js":1646969313012}; return __REQUIRE__(map[modId], modId); })
+return __REQUIRE__(1646969313010);
 })()
 //miniprogram-npm-outsideDeps=["cheerio","js-base64","cross-fetch","real-isomorphic-fetch","tough-cookie-no-native","form-data","entities"]
 //# sourceMappingURL=index.js.map

@@ -4,24 +4,27 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list: []
+    list: [{
+        "title": "公告标题1",
+        "course": "课程名1",
+        "content": "公告内容1"
+      },
+      {
+        "title": "公告标题2",
+        "course": "课程名2",
+        "content": "公告内容2"
+      }
+    ]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  /*
-  onLoad: async function (options) {
-    try {
-      await getApp().golbalData.LearnHelper.login('2018013402', '20010120FangLin');
-      const semester = await helper.getCurrentSemester();
 
-    } catch (e) {
-      // e is a FailReason
-      console(e)
-    }
+  onLoad: async function (options) {
+    
   },
-*/
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
