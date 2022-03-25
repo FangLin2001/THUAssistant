@@ -3,7 +3,7 @@
 Component({
   data: {
     active: 0,
-    list: [{
+    tabDatas: [{
         "url": "/pages/learn/announcement/announcement",
         "icon": "bulb-o",
         "text": "公告"
@@ -23,32 +23,40 @@ Component({
         "icon": "calendar-o",
         "text": "日程表"
       }
-    ]
+    ],
+    
   },
+
   methods: {
     onChange(e) {
-      console.log(e, 'e')
-      wx.navigateTo({
-        url: this.data.list[e.detail].url
+      wx.showToast({
+        title: `切换到 ${e.detail.title}`,
+        icon: 'none'
       });
+      // wx.navigateTo({
+      //   url: this.data.list[e.detail].url
+      // });
       this.setData({
-        active: e.detail
+        active: e.detail.index
       });
+      // console.log(e.detail, this.data.active);
     },
     init() {
-      const page = getCurrentPages().pop();
       wx.setNavigationBarTitle({
-        title: '网络学堂'
+        title: "网络学堂"
       });
+      /*
+      const page = getCurrentPages().pop();
       this.setData({
         active: this.data.list.findIndex(item => item.url === `/${page.route}`)
       });
+      */
     }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.getTabBar().init();
+    // this.getTabBar().init();
   },
 });
