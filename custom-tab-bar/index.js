@@ -16,7 +16,7 @@ Component({
   },
   methods: {
     onChange(e) {
-      console.log(e, 'e')
+      // console.log(e);
       wx.switchTab({
         url: this.data.list[e.detail].url
       });
@@ -24,18 +24,18 @@ Component({
         active: e.detail
       });
     },
-    init() {
-      const page = getCurrentPages().pop();
+
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
+    onReady: function () {
+      console.log("onReady");
       this.setData({
-        //active: this.data.list.findIndex(item => item.url === `/${page.route}`)
         active: 0
       });
-    }
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    this.getTabBar().init();
-  },
+      wx.switchTab({
+        url: this.data.list[this.data.active].url
+      });
+    },
+  }
 });
