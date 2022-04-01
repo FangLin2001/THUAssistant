@@ -12,7 +12,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let arr = JSON.parse(option.arr);
+		let obj= JSON.parse(option.obj);
   },
 
   /**

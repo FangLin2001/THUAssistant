@@ -7,15 +7,12 @@
       <view hidden="{{active != 0}}">
         <van-cell-group>
           <view wx:for="{{notifications}}" wx:key="id" wx:for-item="notification">
-            <van-cell inset use-label-slot="true" clickable="true" link-type="navigateTo" url="/pages/learn/course/detail">
+            <van-cell inset use-label-slot="true" clickable="true" link-type="navigateTo" url="/pages/learn/notification/detail">
               <view slot="title">
-                <view class="van-cell-text">{{notification.name}}</view>
               </view>
               <view slot="label">
-                <view class="van-cell-text">{{notification.timeAndLocation}}</view>
               </view>
               <view slot="">
-                <view class="van-cell-text">{{notification.teacherName}}</view>
               </view>
             </van-cell>
           </view>
@@ -27,13 +24,10 @@
           <view wx:for="{{homeworks}}" wx:key="id" wx:for-item="homework">
             <van-cell inset use-label-slot="true" clickable="true" link-type="navigateTo" url="/pages/learn/course/detail">
               <view slot="title">
-                <view class="van-cell-text">{{homework.name}}</view>
               </view>
               <view slot="label">
-                <view class="van-cell-text">{{homework.timeAndLocation}}</view>
               </view>
               <view slot="">
-                <view class="van-cell-text">{{homework.teacherName}}</view>
               </view>
             </van-cell>
           </view>
@@ -42,16 +36,18 @@
       <!-- 课程 -->
       <view hidden="{{active != 2}}">
         <van-cell-group>
-          <view wx:for="{{courses}}" wx:key="id" wx:for-item="course">
-            <van-cell inset use-label-slot="true" clickable="true" link-type="navigateTo" url="/pages/learn/course/detail">
+          <view wx:for="{{courses}}" wx:key="id" wx:for-item="course" data-index ="{{index}}" id="{{course.id}}">
+            <van-cell class="course-cell" inset use-label-slot="true" clickable="true">
               <view slot="title">
                 <view class="van-cell-text">{{course.name}}</view>
               </view>
               <view slot="label">
-                <view class="van-cell-text">{{course.timeAndLocation}}</view>
+                <view wx:for="{{course.timeAndLocation}}" wx:key="*this" wx:for-item="TAL">
+                  <view wx:if="{{TAL != '星期第0节(全周)，'}}" style="display: block;" class="van-cell__label">{{TAL}}</view>
+                </view>
               </view>
               <view slot="">
-                <view class="van-cell-text">{{course.teacherName}}</view>
+                <view class="van-cell__value">{{course.teacherName}}</view>
               </view>
             </van-cell>
           </view>

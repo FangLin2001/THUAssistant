@@ -1,0 +1,20 @@
+<!--pages/learn/announcement/announcement.wxml-->
+<view>
+  <van-cell-group>
+    <view wx:for="{{notifications}}" wx:key="id" wx:for-item="course">
+      <van-cell class="course-cell" inset use-label-slot="true" clickable="true" link-type="navigateTo" url="/pages/learn/course/detail">
+        <view slot="title">
+          <view class="van-cell-text">{{course.name}}</view>
+        </view>
+        <view slot="label">
+          <view wx:for="{{course.timeAndLocation}}" wx:key="*this" wx:for-item="TAL">
+            <view wx:if="{{TAL != '星期第0节(全周)，'}}" style="display: block;" class="van-cell__label">{{TAL}}</view>
+          </view>
+        </view>
+        <view slot="">
+          <view class="van-cell__value">{{course.teacherName}}</view>
+        </view>
+      </van-cell>
+    </view>
+  </van-cell-group>
+</view>

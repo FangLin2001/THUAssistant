@@ -5,7 +5,7 @@
     "pages/entrance/entrance",
     "pages/setting/setting",
     "pages/learn/index",
-    "pages/learn/announcement/announcement",
+    "pages/learn/notification/notification",
     "pages/learn/homework/homework",
     "pages/learn/course/course",
     "pages/learn/calendar/calendar",

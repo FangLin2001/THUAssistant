@@ -4,13 +4,13 @@ Component({
   data: {
     active: 0,
 
-    notifications = [{}],
-    discardNotifications = [],
-    homeworks = [{}],
-    discardHomeworks = [],
+    notifications: [{}],
+    discardNotifications: [],
+    homeworks: [{}],
+    discardHomeworks: [],
     courses: [{}],
-    discardCourses:[],
-    
+    discardCourses: [],
+
     tabDatas: [{
         "url": "/pages/learn/announcement/announcement",
         "icon": "bulb-o",
@@ -49,6 +49,14 @@ Component({
       });
     },
 
+    toTap: function (e) {
+      var id = e.currentTarget.id; //获取当前ID
+      wx.navigateTo({
+        //实现跳转到test界面的函数，url附带跳转时传送的数据
+        url: '/pages/learn/course/course?id=' + id,
+      })
+    },
+
     /**
      * 生命周期函数--监听页面加载
      */
@@ -81,7 +89,7 @@ Component({
         url: 'http://localhost:3000/learn/courses',
         data: {
           username: "2018013402",
-          semesterId: "2021-2022-1"
+          semesterId: "2021-2022-2"
         },
         method: "POST",
         dataType: 'JSON',
@@ -96,6 +104,8 @@ Component({
             this.setData({
               courses: jsonRes["courses"]
             });
+          } else {
+            console.log(jsonRes);
           }
         }
       });
