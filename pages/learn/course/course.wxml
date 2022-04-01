@@ -1,19 +1,104 @@
-<!--pages/learn/course/course.wxml-->
+<!--pages/learn/index.wxml-->
+
 <view>
-  <van-cell-group>
-			<view wx:for="{{list}}" wx:for-item="course">
-				<van-cell inset use-label-slot="true" clickable="true" link-type="navigateTo"
-					url="/pages/learn/course/detail">
-					<view slot="title">
-						<view class="van-cell-text">{{course.title}}</view>
-					</view>
-					<view slot="">
-						<view class="van-cell-text">{{course.course}}</view>
-					</view>
-					<view slot="label">
-						<view class="van-cell-text">{{course.content}}</view>
-					</view>
-				</van-cell>
-			</view>
-		</van-cell-group>
+  <van-tabs active="{{ active }}" bind:change="onChange" swipeable animated sticky color="#9932CC">
+    <van-tab wx:for="{{ tabDatas }}" wx:key="index" title="{{item.text}}">
+      <!-- 公告 -->
+      <view hidden="{{active != 0}}">
+        <van-cell-group>
+          <view wx:for="{{notifications}}" wx:key="id" wx:for-item="notification" bindtap="notificationToTap" data-index="{{index}}">
+            <view wx:if="{{notification.hasRead}}">
+              <van-cell inset use-label-slot="true" clickable="true">
+                <view slot="title">
+                  <view class="van-cell-text">{{notification.title}}</view>
+                </view>
+                <view slot="label">
+                  <view class="van-multi-ellipsis--l2">
+                    <rich-text nodes="{{notification.content}}"></rich-text>
+                  </view>
+                </view>
+              </van-cell>
+            </view>
+            <view wx:if="{{!notification.hasRead}}">
+              <van-cell inset use-label-slot="true" clickable="true">
+                <view slot="title">
+                  <view>{{notification.title}} <van-tag color="#9932CC" plain>未读</van-tag>
+                  </view>
+                </view>
+                <view slot="label">
+                  <view class="van-multi-ellipsis--l2">
+                    <rich-text nodes="{{notification.content}}"></rich-text>
+                  </view>
+                </view>
+              </van-cell>
+            </view>
+          </view>
+        </van-cell-group>
+      </view>
+      <!-- 作业 -->
+      <view hidden="{{active != 1}}">
+        <van-cell-group>
+          <view wx:for="{{homework}}" wx:key="id" wx:for-item="homework" bindtap="homeworkToTap" data-index="{{index}}">
+            <view wx:if="{{!homework.submitted}}">
+              <van-cell inset use-label-slot="true" clickable="true">
+                <view slot="title">
+                  <view class="van-cell-text">{{homework.title}} <van-tag color="#9932CC" plain>未交</van-tag>
+                  </view>
+                </view>
+                <view slot="label">
+                  <view class="van-multi-ellipsis--l2">
+                    <rich-text nodes="{{homework.content}}"></rich-text>
+                  </view>
+                </view>
+              </van-cell>
+            </view>
+            <view wx:if="{{homework.submitted}}">
+              <van-cell inset use-label-slot="true" clickable="true">
+                <view slot="title">
+                  <view class="van-cell-text"> {{homework.title}}</view>
+                </view>
+                <view slot="label">
+                  <view class="van-multi-ellipsis--l2">
+                    <rich-text nodes="{{homework.description}}"></rich-text>
+                  </view>
+                </view>
+              </van-cell>
+            </view>
+          </view>
+        </van-cell-group>
+      </view>
+      <!-- 文件 -->
+      <view hidden="{{active != 2}}">
+        <van-cell-group>
+          <view wx:for="{{files}}" wx:key="id" wx:for-item="file" bindtap="fileToTap" data-index="{{index}}">
+            <view wx:if="{{file.isNew}}">
+              <van-cell inset use-label-slot="true" clickable="true">
+                <view slot="title">
+                  <view class="van-cell-text">{{file.title}} <van-tag color="#9932CC" plain>NEW</van-tag>
+                  </view>
+                </view>
+                <view slot="label">
+                  <view class="van-multi-ellipsis--l2">
+                    <rich-text nodes="{{file.description}}"></rich-text>
+                  </view>
+                </view>
+              </van-cell>
+            </view>
+            <view wx:if="{{!file.isNew}}">
+              <van-cell inset use-label-slot="true" clickable="true">
+                <view slot="title">
+                  <view class="van-cell-text"> {{file.title}}</view>
+                </view>
+                <view slot="label">
+                  <view class="van-multi-ellipsis--l2">
+                    <rich-text nodes="{{file.description}}"></rich-text>
+                  </view>
+                </view>
+              </van-cell>
+            </view>
+          </view>
+        </van-cell-group>
+      </view>
+    </van-tab>
+  </van-tabs>
 </view>

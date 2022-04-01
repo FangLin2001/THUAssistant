@@ -1,14 +1,11 @@
 /* pages/learn/index.wxss */
-.course-cell .van-cell__value {
-  min-width: 20%;
+.van-cell__title {
+  /* color: rgb(153,50,204); */
+  min-width: 80%;
 }
-
-.course-cell .van-cell_label {
-  max-width: 80%;
+.van-cell__label {
+  min-width: 80%;
 }
-
-.course-cell .van-cell__value span {
-  display: inline-block;
-  text-align: left;
-  word-break: break-all;
+.van-cell__value {
+  min-width: 10%;
 }

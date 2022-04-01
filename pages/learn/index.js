@@ -41,19 +41,19 @@ Component({
         title: `切换到 ${e.detail.title}`,
         icon: 'none'
       });
-      // wx.navigateTo({
-      //   url: this.data.list[e.detail].url
-      // });
       this.setData({
         active: e.detail.index
       });
     },
 
-    toTap: function (e) {
-      var id = e.currentTarget.id; //获取当前ID
+    courseToTap: function (e) {
+      console.log(e.currentTarget);
+      var id = e.currentTarget.dataset.id;
+      var name = e.currentTarget.dataset.name;
+      // console.log(id, name);
       wx.navigateTo({
         //实现跳转到test界面的函数，url附带跳转时传送的数据
-        url: '/pages/learn/course/course?id=' + id,
+        url: '/pages/learn/course/course?id=' + id +'&name=' + name,
       })
     },
 
@@ -100,7 +100,7 @@ Component({
         success: (res) => {
           var jsonRes = JSON.parse(res.data);
           if (jsonRes["msg"] == "ok") {
-            console.log(jsonRes["courses"]);
+            // console.log(jsonRes["courses"]);
             this.setData({
               courses: jsonRes["courses"]
             });
