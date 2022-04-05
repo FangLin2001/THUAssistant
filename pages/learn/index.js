@@ -4,31 +4,23 @@ Component({
   data: {
     active: 0,
 
-    notifications: [{}],
+    notifications: [],
     discardNotifications: [],
-    homeworks: [{}],
+    homeworks: [],
     discardHomeworks: [],
-    courses: [{}],
+    courses: [],
     discardCourses: [],
 
     tabDatas: [{
-        "url": "/pages/learn/announcement/announcement",
-        "icon": "bulb-o",
         "text": "公告"
       },
       {
-        "url": "/pages/learn/homework/homework",
-        "icon": "records",
         "text": "作业"
       },
       {
-        "url": "/pages/learn/course/course",
-        "icon": "notes-o",
         "text": "课程"
       },
       {
-        "url": "/pages/learn/calendar/calendar",
-        "icon": "calendar-o",
         "text": "日程表"
       }
     ],
@@ -37,10 +29,10 @@ Component({
 
   methods: {
     onChange(e) {
-      wx.showToast({
-        title: `切换到 ${e.detail.title}`,
-        icon: 'none'
-      });
+      // wx.showToast({
+      //   title: `切换到 ${e.detail.title}`,
+      //   icon: 'none'
+      // });
       this.setData({
         active: e.detail.index
       });
@@ -53,7 +45,7 @@ Component({
       // console.log(id, name);
       wx.navigateTo({
         //实现跳转到test界面的函数，url附带跳转时传送的数据
-        url: '/pages/learn/course/course?id=' + id +'&name=' + name,
+        url: '/pages/learn/course/course?id=' + id + '&name=' + name,
       })
     },
 
@@ -85,6 +77,35 @@ Component({
           }
         }
       });
+      // wx.request({
+      //   url: 'http://localhost:3000/learn/notification',
+      //   data: {
+      //     username: "2018013402",
+      //     semesterId: "2021-2022-2"
+      //   },
+      //   method: "POST",
+      //   dataType: 'JSON',
+      //   responseType: 'text',
+      //   header: {
+      //     'content-type': 'application/x-www-form-urlencoded'
+      //   },
+      //   success: (res) => {
+      //     var jsonRes = JSON.parse(res.data);
+      //     if (jsonRes["msg"] == "ok") {
+      //       var jsonNoti = jsonRes["notifications"];
+      //       for (i in jsonNoti) {
+      //         console.log(i + "=" + jsonNoti[i]);
+      //         notifications.push(jsonNoti[i])
+
+      //       }
+      //       this.setData({
+      //         notifications: jsonRes["notifications"],
+      //       });
+      //     } else {
+      //       console.log(jsonRes);
+      //     }
+      //   }
+      // });
       wx.request({
         url: 'http://localhost:3000/learn/courses',
         data: {

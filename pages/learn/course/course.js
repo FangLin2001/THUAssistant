@@ -24,10 +24,10 @@ Component({
   },
   methods: {
     onChange(e) {
-      wx.showToast({
-        title: `切换到 ${e.detail.title}`,
-        icon: 'none'
-      });
+      // wx.showToast({
+      //   title: `切换到 ${e.detail.title}`,
+      //   icon: 'none'
+      // });
       this.setData({
         active: e.detail.index
       });
