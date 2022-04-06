@@ -1,8 +1,8 @@
 <!--pages/learn/announcement/announcement.wxml-->
 <view>
   <van-cell-group>
-    <view wx:for="{{notifications}}" wx:key="id" wx:for-item="course">
-      <van-cell class="course-cell" inset use-label-slot="true" clickable="true" link-type="navigateTo" url="/pages/learn/course/detail">
+    <view wx:for="{{notifications}}" wx:key="id" wx:for-item="notification">
+      <van-cell inset use-label-slot="true" clickable="true" link-type="navigateTo" url="/pages/learn/course/detail">
         <view slot="title">
           <view class="van-cell-text">{{course.name}}</view>
         </view>

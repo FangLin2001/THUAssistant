@@ -8,7 +8,6 @@
     "pages/learn/notification/notification",
     "pages/learn/homework/homework",
     "pages/learn/course/course",
-    "pages/learn/calendar/calendar",
     "pages/info/index",
     "pages/info/grade/grade"
   ],

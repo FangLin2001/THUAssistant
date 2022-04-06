@@ -1,11 +1,16 @@
 // pages/info/index.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    active: 0,
+    tabDatas: [{
+        "text": "GPA"
+      },
+      {
+        "text": "日程表"
+      }
+    ],
+    courses: [],
+    discardCourses: [],
   },
 
   /**

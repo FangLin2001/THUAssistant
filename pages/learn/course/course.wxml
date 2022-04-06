@@ -10,7 +10,7 @@
             <view wx:if="{{notification.hasRead}}">
               <van-cell inset use-label-slot="true" clickable="true">
                 <view slot="title">
-                  <view class="van-cell-text">{{notification.title}}</view>
+                  <view>{{notification.title}}</view>
                 </view>
                 <view slot="label">
                   <view class="van-multi-ellipsis--l2">
@@ -42,7 +42,7 @@
             <view wx:if="{{!homework.submitted}}">
               <van-cell inset use-label-slot="true" clickable="true">
                 <view slot="title">
-                  <view class="van-cell-text">{{homework.title}} <van-tag color="#9932CC" plain>未交</van-tag>
+                  <view>{{homework.title}} <van-tag color="#9932CC" plain>未交</van-tag>
                   </view>
                 </view>
                 <view slot="label">
@@ -55,7 +55,7 @@
             <view wx:if="{{homework.submitted}}">
               <van-cell inset use-label-slot="true" clickable="true">
                 <view slot="title">
-                  <view class="van-cell-text"> {{homework.title}}</view>
+                  <view> {{homework.title}}</view>
                 </view>
                 <view slot="label">
                   <view class="van-multi-ellipsis--l2">
@@ -74,7 +74,7 @@
             <view wx:if="{{file.isNew}}">
               <van-cell inset use-label-slot="true" clickable="true">
                 <view slot="title">
-                  <view class="van-cell-text">{{file.title}} <van-tag color="#9932CC" plain>NEW</van-tag>
+                  <view>{{file.title}} <van-tag color="#9932CC" plain>NEW</van-tag>
                   </view>
                 </view>
                 <view slot="label">

@@ -1,9 +1,5 @@
 // pages/learn/course/course.js
 Component({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     active: 0,
     courseId: -1,

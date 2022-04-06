@@ -1,7 +1,7 @@
 <!--index.wxml-->
 
 <view>
-  <van-dialog use-slot title="登录" show="{{ !hasLoginInfo }}" confirm-button-open-type="getUserInfo" before-close="beforeClose" bind:getuserinfo="getUserInfo">
+  <van-dialog use-slot title="登录" show="{{ !hasLoginInfo }}" confirm-button-open-type="getUserInfo" before-close="{{beforeClose}}" bind:getuserinfo="getUserInfo">
     <van-cell-group>
       <van-field model:value="{{ username }}" clearable type="number" label="学号" placeholder="请输入学号" maxlength="10" />
       <van-field model:value="{{ password}}" clearable password="{{hide}}" label="密码" placeholder="请输入密码" border="{{ false }}"  icon="{{ hide ? 'closed-eye' : 'eye-o' }}" bind:click-icon="clickEye" />
