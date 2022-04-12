@@ -1,2 +1,26 @@
 <!--pages/learn/homework/homework.wxml-->
-<text>pages/learn/homework/homework.wxml</text>
+
+<view>
+  <view wx:if="{{hw.submitted}}">
+    <van-cell inset title="{{hw.title}}">
+    </van-cell>
+    <van-cell inset>
+      <view slot="title">
+        <rich-text nodes="{{hw.content}}"></rich-text>
+      </view>
+    </van-cell>
+  </view>
+  <view wx:if="{{!hw.submitted}}">
+    <van-cell inset>
+      <view slot="title">
+        <view>{{hw.title}} <van-tag color="#9932CC" plain>未交</van-tag>
+        </view>
+      </view>
+    </van-cell>
+    <van-cell inset>
+      <view slot="title">
+        <rich-text nodes="{{hw.content}}"></rich-text>
+      </view>
+    </van-cell>
+  </view>
+</view>

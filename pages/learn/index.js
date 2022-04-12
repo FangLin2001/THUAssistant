@@ -35,28 +35,27 @@ Component({
     },
 
     notiToTap: function (e) {
-      console.log(e.currentTarget);
-      var id = e.currentTarget.dataset.id;
-      var name = e.currentTarget.dataset.name;
-      // console.log(id, name);
+      // console.log(e.currentTarget);
+      var notification = e.currentTarget.dataset.noti;
+      // console.log(notification);
       wx.navigateTo({
         //实现跳转到test界面的函数，url附带跳转时传送的数据
-        url: '/pages/learn/notification/course?id=' + id + '&name=' + name,
+        url: '/pages/learn/notification/notification?json=' + encodeURIComponent(JSON.stringify(notification)),
       })
     },
 
     hwToTap: function (e) {
-      console.log(e.currentTarget);
-      var id = e.currentTarget.dataset.id;
-      var name = e.currentTarget.dataset.name;
-      // console.log(id, name);
+      // console.log(e.currentTarget);
+      var hw = e.currentTarget.dataset.hw;
+      // console.log(hw);
       wx.navigateTo({
         //实现跳转到test界面的函数，url附带跳转时传送的数据
-        url: '/pages/learn/course/course?id=' + id + '&name=' + name,
+        url: '/pages/learn/homework/homework?json=' + encodeURIComponent(JSON.stringify(hw)),
       })
     },
+
     courseToTap: function (e) {
-      console.log(e.currentTarget);
+      // console.log(e.currentTarget);
       var id = e.currentTarget.dataset.id;
       var name = e.currentTarget.dataset.name;
       // console.log(id, name);
@@ -131,7 +130,7 @@ Component({
             this.setData({
               notifications: _notis,
             });
-            console.log("notifications:", this.data.notifications);
+            // console.log("notifications:", this.data.notifications);
           } else {
             console.log(jsonRes);
           }
@@ -169,7 +168,7 @@ Component({
             this.setData({
               homeworks: _hws,
             });
-            console.log("homeworks:", this.data.homeworks);
+            // console.log("homeworks:", this.data.homeworks);
           } else {
             console.log(jsonRes);
           }

@@ -4,25 +4,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list: [{
-        "title": "公告标题1",
-        "course": "课程名1",
-        "content": "公告内容1"
-      },
-      {
-        "title": "公告标题2",
-        "course": "课程名2",
-        "content": "公告内容2"
-      }
-    ]
+    noti: {},
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
 
-  onLoad: async function (options) {
-    
+  onLoad: function (options) {
+    // console.log(options.json, "onLoad");
+    this.setData({
+      noti: JSON.parse(decodeURIComponent(options.json)),
+    });
+    // console.log("noti:", this.data.noti);
   },
 
   /**

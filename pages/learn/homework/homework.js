@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    hw:{},
 
   },
 
@@ -12,7 +13,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // console.log(options.json, "onLoad");
+    this.setData({
+      hw: JSON.parse(decodeURIComponent(options.json)),
+    });
+    console.log("hw:", this.data.hw);
   },
 
   /**

@@ -29,6 +29,26 @@ Component({
       });
     },
 
+    notiToTap: function (e) {
+      // console.log(e.currentTarget);
+      var notification = e.currentTarget.dataset.noti;
+      // console.log(notification);
+      wx.navigateTo({
+        //实现跳转到test界面的函数，url附带跳转时传送的数据
+        url: '/pages/learn/notification/notification?json=' + encodeURIComponent(JSON.stringify(notification)),
+      })
+    },
+
+    hwToTap: function (e) {
+      // console.log(e.currentTarget);
+      var hw = e.currentTarget.dataset.hw;
+      // console.log(hw);
+      wx.navigateTo({
+        //实现跳转到test界面的函数，url附带跳转时传送的数据
+        url: '/pages/learn/homework/homework?json=' + encodeURIComponent(JSON.stringify(hw)),
+      })
+    },
+    
     /**
      * 生命周期函数--监听页面加载
      */
