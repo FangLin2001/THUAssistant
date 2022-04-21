@@ -35,34 +35,69 @@ Component({
     },
 
     notiToTap: function (e) {
-      // console.log(e.currentTarget);
-      var notification = e.currentTarget.dataset.noti;
-      // console.log(notification);
+      // console.log(e);
+      if (e.detail == "right") {
+        var tmp = wx.getStorageSync('discardNotifications') || [];
+        tmp.push(e.currentTarget.dataset.id);
+        wx.setStorageSync('discardNotifications', tmp);
+        this.setData({
+          discardNotifications: tmp
+        });
+        // console.log(wx.getStorageSync('discardNotifications'));
+      } else if (e.detail == "cell") {
+        var notification = e.currentTarget.dataset.noti;
+        // console.log(notification);
+        wx.navigateTo({
+          //实现跳转到test界面的函数，url附带跳转时传送的数据
+          url: '/pages/learn/notification/notification?json=' + encodeURIComponent(JSON.stringify(notification)),
+        })
+      }
+    },
+    notiToArchive: function (e) {
+      console.log("notiToArchive");
+      var notis = e.currentTarget.dataset.notis;
       wx.navigateTo({
         //实现跳转到test界面的函数，url附带跳转时传送的数据
-        url: '/pages/learn/notification/notification?json=' + encodeURIComponent(JSON.stringify(notification)),
+        url: '/pages/learn/notification/discards/discards?notis=' + encodeURIComponent(JSON.stringify(notis)),
       })
     },
 
     hwToTap: function (e) {
-      // console.log(e.currentTarget);
-      var hw = e.currentTarget.dataset.hw;
-      // console.log(hw);
-      wx.navigateTo({
-        //实现跳转到test界面的函数，url附带跳转时传送的数据
-        url: '/pages/learn/homework/homework?json=' + encodeURIComponent(JSON.stringify(hw)),
-      })
+      // console.log(e);
+      if (e.detail == "right") {
+        var tmp = wx.getStorageSync('discardHomeworks') || [];
+        tmp.push(e.currentTarget.dataset.id);
+        wx.setStorageSync('discardHomeworks', tmp);
+        this.setData({
+          discardHomeworks: tmp
+        });
+      } else if (e.detail == "cell") {
+        var hw = e.currentTarget.dataset.hw;
+        // console.log(hw);
+        wx.navigateTo({
+          //实现跳转到test界面的函数，url附带跳转时传送的数据
+          url: '/pages/learn/homework/homework?json=' + encodeURIComponent(JSON.stringify(hw)),
+        })
+      }
     },
 
     courseToTap: function (e) {
-      // console.log(e.currentTarget);
-      var id = e.currentTarget.dataset.id;
-      var name = e.currentTarget.dataset.name;
-      // console.log(id, name);
-      wx.navigateTo({
-        //实现跳转到test界面的函数，url附带跳转时传送的数据
-        url: '/pages/learn/course/course?id=' + id + '&name=' + name,
-      })
+      // console.log(e);
+      if (e.detail == "right") {
+        var tmp = wx.getStorageSync('discardCourses') || [];
+        tmp.push(e.currentTarget.dataset.id);
+        wx.setStorageSync('discardCourses', tmp);
+        this.setData({
+          discardCourses: tmp
+        });
+      } else if (e.detail == "cell") {
+        var id = e.currentTarget.dataset.id;
+        var name = e.currentTarget.dataset.name;
+        wx.navigateTo({
+          //实现跳转到test界面的函数，url附带跳转时传送的数据
+          url: '/pages/learn/course/course?id=' + id + '&name=' + name,
+        })
+      }
     },
 
     rTime: function (date) {
@@ -77,6 +112,13 @@ Component({
       wx.setNavigationBarTitle({
         title: "网络学堂"
       });
+      this.setData({
+        discardNotifications: wx.getStorageSync('discardNotifications') || [],
+        discardHomeworks: wx.getStorageSync('discardHomeworks') || [],
+        discardCourses: wx.getStorageSync('discardCourses') || [],
+      })
+      // console.log(this.data.discardNotifications);
+
       const that = this;
       // 最初获取数据
       wx.request({
@@ -204,6 +246,9 @@ Component({
      */
     onShow: function () {
       console.log("onShow");
+      this.setData({
+        discardNotifications: wx.getStorageSync('discardNotifications') || []
+      });
     },
 
     /**

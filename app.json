@@ -6,6 +6,7 @@
     "pages/setting/setting",
     "pages/learn/index",
     "pages/learn/notification/notification",
+    "pages/learn/notification/discards/discards",
     "pages/learn/homework/homework",
     "pages/learn/course/course",
     "pages/info/index",

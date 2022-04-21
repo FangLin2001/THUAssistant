@@ -1,0 +1,13 @@
+/* pages/learn/notification/discards.wxss */
+
+.van-swipe-cell__left,
+.van-swipe-cell__right {
+  height: inherit;
+  display: flex;
+  width: 60px;
+  text-align: center;
+  align-items: center;
+	justify-content: center;
+  background-color: #4798b3;
+  color: #fff;
+}

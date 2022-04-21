@@ -9,3 +9,14 @@
 .van-cell__value {
   min-width: 10%;
 }
+.van-swipe-cell__left,
+.van-swipe-cell__right {
+  height: inherit;
+  display: flex;
+  width: 60px;
+  text-align: center;
+  align-items: center;
+	justify-content: center;
+  background-color: #f44;
+  color: #fff;
+}
