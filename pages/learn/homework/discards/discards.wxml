@@ -1,7 +1,7 @@
-<!--pages/learn/notification/discards.wxml-->
+<!--pages/learn/homework/discards.wxml-->
 
 <wxs module="fn">
-var filter = {
+  var filter = {
     formatNumber: function (n) {
       n = n.toString()
       return n[1] ? n : '0' + n
@@ -43,71 +43,72 @@ var filter = {
       return html
     },
     rTime: filter.rTime,
-    getDateDiff: function (dateTimeStamp) {
+    getTimeLeft: function (dateTimeStamp) {
       var minute = 1000 * 60;
       var hour = minute * 60;
       var day = hour * 24;
       var halfamonth = day * 15;
       var month = day * 30;
       var now = getDate();
-      var diffValue = now - dateTimeStamp;
-      if (diffValue < 0) { return; }
+      var diffValue = dateTimeStamp - now;
+      if (diffValue < 0) { return "已截止"; }
       var monthC = diffValue / month;
       var weekC = diffValue / (7 * day);
       var dayC = diffValue / day;
       var hourC = diffValue / hour;
       var minC = diffValue / minute;
       if (monthC >= 1) {
-        result = "" + parseInt(monthC) + "月前";
+        result = "剩余" + parseInt(monthC) + "月";
       }
       else if (weekC >= 1) {
-        result = "" + parseInt(weekC) + "周前";
+        result = "剩余" + parseInt(weekC) + "周";
       }
       else if (dayC >= 1) {
-        result = "" + parseInt(dayC) + "天前";
+        result = "剩余" + parseInt(dayC) + "天";
       }
       else if (hourC >= 1) {
-        result = "" + parseInt(hourC) + "小时前";
+        result = "剩余" + parseInt(hourC) + "小时";
       }
       else if (minC >= 1) {
-        result = "" + parseInt(minC) + "分钟前";
+        result = "剩余" + parseInt(minC) + "分钟";
       } else
-        result = "刚刚";
+        result = "即将截止";
       return result;
-    },
+    }
   }
 </wxs>
 
 <van-cell-group>
   <block wx:if="{{type == 'archive'}}">
-    <block wx:if="{{discardNotifications.length === 0}}">
-      <van-cell class="empty" inset title="这里空空如也" />
+    <block wx:if="{{discardHomeworks.length === 0}}">
+      <van-cell inset>
+        <view slot="title" class="empty">
+          这里空空如也！
+        </view>
+      </van-cell>
     </block>
     <block wx:else>
-      <view wx:for="{{notis}}" wx:key="id" wx:for-item="notification" style="touch-action: none;">
-        <block wx:if="{{fn.indexOf(discardNotifications, notification.id) != -1}}">
-          <van-swipe-cell right-width="{{ 60 }}" data-id="{{notification.id}}" bind:click="notiToTap" data-noti="{{notification}}">
+      <view wx:for="{{hws}}" wx:key="id" wx:for-item="homework" style="touch-action: none;">
+        <block wx:if="{{fn.indexOf(discardHomeworks, homework.id) != -1}}">
+          <van-swipe-cell right-width="{{ 60 }}" data-id="{{homework.id}}" bind:click="hwToTap" data-hw="{{homework}}">
             <view slot="right">
               <view class="van-swipe-cell__right">恢复</view>
             </view>
             <van-cell inset use-label-slot="true" clickable="true">
               <view slot="title">
-                <view class="title-course-name">{{fn.id2name(id2name, notification.courseid)}}</view>
-                <view class=".title">{{notification.title}} <block wx:if="{{!notification.hasRead}}">
-                    <van-tag color="#9932CC" plain>未读</van-tag>
-                  </block>
-                  <block wx:if="{{notification.markedImportant}}">
-                    <van-icon name="flag-o" color="red" />
+                <view class="title-course-name">{{fn.id2name(id2name, homework.courseid)}}</view>
+                <view class="title">{{homework.title}} <block wx:if="{{!homework.submitted}}">
+                    <van-tag color="#9932CC" plain>未交</van-tag>
                   </block>
                 </view>
               </view>
               <view slot="label">
                 <view class="van-multi-ellipsis--l2">
-                  <rich-text class="van-cell__label" nodes="{{fn.html2text(notification.content)}}"></rich-text>
+                  <rich-text class="van-cell__label" nodes="{{fn.html2text(homework.description)}}"></rich-text>
                 </view>
                 <view class="list-title">
-                  <view class="left">{{notification.publisher}}</view>
-                  <view class="right">{{fn.getDateDiff(fn.rTime(notification.publishTime))}}</view>
+                  <view class="left"></view>
+                  <view class="right">{{fn.getTimeLeft(fn.rTime(homework.deadline))}}</view>
                 </view>
               </view>
             </van-cell>
@@ -121,27 +122,20 @@ var filter = {
       <van-cell class="empty" inset title="这里空空如也" />
     </block>
     <block wx:else>
-      <view wx:for="{{notis}}" wx:key="id" wx:for-item="notification" style="touch-action: none;">
-        <block wx:if="{{fn.indexOf(discardCourses, notification.courseid) != -1}}">
-          <van-swipe-cell right-width="{{ 60 }}" data-id="{{notification.id}}" bind:click="notiToTap" data-noti="{{notification}}">
+      <view wx:for="{{hws}}" wx:key="id" wx:for-item="homework" style="touch-action: none;">
+        <block wx:if="{{fn.indexOf(discardHomeworks, homework.id) != -1}}">
+          <van-swipe-cell right-width="{{ 60 }}" data-id="{{homework.id}}" bind:click="hwToTap" data-hw="{{homework}}">
             <van-cell inset use-label-slot="true" clickable="true">
               <view slot="title">
-                <view class="title-course-name">{{fn.id2name(id2name, notification.courseid)}}</view>
-                <view class=".title">{{notification.title}} <block wx:if="{{!notification.hasRead}}">
-                    <van-tag color="#9932CC" plain>未读</van-tag>
-                  </block>
-                  <block wx:if="{{notification.markedImportant}}">
-                    <van-icon name="flag-o" color="red" />
+                <view class="title-course-name">{{fn.id2name(id2name, homework.courseid)}}</view>
+                <view class="title">{{homework.title}} <block wx:if="{{!homework.submitted}}">
+                    <van-tag color="#9932CC" plain>未交</van-tag>
                   </block>
                 </view>
               </view>
               <view slot="label">
                 <view class="van-multi-ellipsis--l2">
-                  <rich-text class="van-cell__label" nodes="{{fn.html2text(notification.content)}}"></rich-text>
-                </view>
-                <view class="list-title">
-                  <view class="left">{{notification.publisher}}</view>
-                  <view class="right">{{fn.getDateDiff(fn.rTime(notification.publishTime))}}</view>
+                  <rich-text class="van-cell__label" nodes="{{fn.html2text(homework.description)}}"></rich-text>
                 </view>
               </view>
             </van-cell>

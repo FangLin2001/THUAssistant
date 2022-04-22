@@ -1,1 +1,37 @@
 /* pages/learn/course/course.wxss */
+
+.van-cell__label {
+  min-width: 80%;
+  color: black;
+}
+
+.van-swipe-cell__left,
+.van-swipe-cell__right {
+  height: inherit;
+  display: flex;
+  width: 60px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  background-color: #f44;
+  color: #fff;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.archive {
+  color: cornflowerblue;
+  font-size: 16px;
+}
+
+.list-title {
+  /* padding: 10px; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: dimgray;
+  font-size: 11px;
+}

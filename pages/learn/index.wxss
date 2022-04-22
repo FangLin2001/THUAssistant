@@ -3,12 +3,16 @@
   /* color: rgb(153,50,204); */
   min-width: 80%;
 }
+
 .van-cell__label {
   min-width: 80%;
+  color: black;
 }
+
 .van-cell__value {
   min-width: 10%;
 }
+
 .van-swipe-cell__left,
 .van-swipe-cell__right {
   height: inherit;
@@ -16,7 +20,31 @@
   width: 60px;
   text-align: center;
   align-items: center;
-	justify-content: center;
+  justify-content: center;
   background-color: #f44;
   color: #fff;
+}
+
+.title-course-name {
+  font-size: 14px;
+  /* font-weight: bold; */
+}
+
+.title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.archive {
+  color: cornflowerblue;
+  font-size: 16px;
+}
+
+.list-title {
+  /* padding: 10px; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: dimgray;
+  font-size: 11px;
 }

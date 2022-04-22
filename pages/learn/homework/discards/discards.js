@@ -5,28 +5,26 @@ Page({
    * 页面的初始数据
    */
   data: {
-    notis: [],
+    hws: [],
     type: [],
     id2name: {},
-    discardNotifications: [],
+    discardHomeworks: [],
     discardCourses: []
   },
 
-  notiToTap: function (e) {
+  hwToTap: function (e) {
     // console.log(e);
     if (e.detail == "right") {
-      var tmp = wx.getStorageSync('discardNotifications');
+      var tmp = wx.getStorageSync('discardHomeworks');
       tmp.splice(tmp.indexOf(e.currentTarget.dataset.id), 1);
-      wx.setStorageSync('discardNotifications', tmp);
+      wx.setStorageSync('discardHomeworks', tmp);
       this.setData({
-        discardNotifications: tmp
+        discardHomeworks: tmp
       });
     } else if (e.detail == "cell") {
-      var notification = e.currentTarget.dataset.noti;
-      // console.log(notification);
+      var hw = e.currentTarget.dataset.hw;
       wx.navigateTo({
-        //实现跳转到test界面的函数，url附带跳转时传送的数据
-        url: '/pages/learn/notification/notification?json=' + encodeURIComponent(JSON.stringify(notification)),
+        url: '/pages/learn/homework/homework?json=' + encodeURIComponent(JSON.stringify(hw)),
       })
     }
   },
@@ -38,9 +36,9 @@ Page({
     console.log("onLoad");
     this.setData({
       type: options.type,
-      notis: JSON.parse(decodeURIComponent(options.notis)),
+      hws: JSON.parse(decodeURIComponent(options.hws)),
       id2name: wx.getStorageSync('id2name'),
-      discardNotifications: wx.getStorageSync('discardNotifications') || [],
+      discardHomeworks: wx.getStorageSync('discardHomeworks') || [],
       discardCourses: wx.getStorageSync('discardCourses') || [],
     });
   },

@@ -9,6 +9,7 @@ Component({
     discardHomeworks: [],
     courses: [],
     discardCourses: [],
+    id2name: {},
 
     tabDatas: [{
         "text": "公告"
@@ -49,7 +50,7 @@ Component({
         // console.log(notification);
         wx.navigateTo({
           //实现跳转到test界面的函数，url附带跳转时传送的数据
-          url: '/pages/learn/notification/notification?json=' + encodeURIComponent(JSON.stringify(notification)),
+          url: '/pages/learn/notification/notification?json=' + encodeURIComponent(JSON.stringify(notification)) + "&coursename=" + this.data.id2name[notification.courseid],
         })
       }
     },
@@ -58,7 +59,7 @@ Component({
       var notis = e.currentTarget.dataset.notis;
       wx.navigateTo({
         //实现跳转到test界面的函数，url附带跳转时传送的数据
-        url: '/pages/learn/notification/discards/discards?notis=' + encodeURIComponent(JSON.stringify(notis)),
+        url: '/pages/learn/notification/discards/discards?notis=' + encodeURIComponent(JSON.stringify(notis)) + "&type=" + e.currentTarget.dataset.type,
       })
     },
 
@@ -80,6 +81,14 @@ Component({
         })
       }
     },
+    hwToArchive: function (e) {
+      console.log("hwToArchive");
+      var hws = e.currentTarget.dataset.hws;
+      wx.navigateTo({
+        //实现跳转到test界面的函数，url附带跳转时传送的数据
+        url: '/pages/learn/homework/discards/discards?hws=' + encodeURIComponent(JSON.stringify(hws)) + "&type=" + e.currentTarget.dataset.type,
+      })
+    },
 
     courseToTap: function (e) {
       // console.log(e);
@@ -99,6 +108,14 @@ Component({
         })
       }
     },
+    courseToArchive: function (e) {
+      console.log("courseToArchive");
+      var courses = e.currentTarget.dataset.courses;
+      wx.navigateTo({
+        //实现跳转到test界面的函数，url附带跳转时传送的数据
+        url: '/pages/learn/course/discards/discards?courses=' + encodeURIComponent(JSON.stringify(courses)),
+      })
+    },
 
     rTime: function (date) {
       var json_date = new Date(date).toJSON();
@@ -109,9 +126,6 @@ Component({
      */
     onLoad: function (options) {
       console.log("onLoad");
-      wx.setNavigationBarTitle({
-        title: "网络学堂"
-      });
       this.setData({
         discardNotifications: wx.getStorageSync('discardNotifications') || [],
         discardHomeworks: wx.getStorageSync('discardHomeworks') || [],
@@ -120,7 +134,7 @@ Component({
       // console.log(this.data.discardNotifications);
 
       const that = this;
-      // 最初获取数据
+      // 登录
       wx.request({
         url: 'http://localhost:3000/learn/login',
         data: {
@@ -140,6 +154,38 @@ Component({
           }
         }
       });
+      // 获取课程和缓存id2name
+      wx.request({
+        url: 'http://localhost:3000/learn/courses',
+        data: {
+          username: "2018013402",
+          semesterId: "2021-2022-2"
+        },
+        method: "POST",
+        dataType: 'JSON',
+        responseType: 'text',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        success: (res) => {
+          var jsonRes = JSON.parse(res.data);
+          var id2name_ = {};
+          for (var i in jsonRes["courses"]) {
+            id2name_[jsonRes["courses"][i]["id"]] = jsonRes["courses"][i]["name"];
+          }
+          wx.setStorageSync('id2name', id2name_);
+          if (jsonRes["msg"] == "ok") {
+            this.setData({
+              courses: jsonRes["courses"],
+              id2name: id2name_
+            });
+            // console.log("courses:", this.data.courses);
+          } else {
+            console.log(jsonRes);
+          }
+        }
+      });
+      // 获取通知
       wx.request({
         url: 'http://localhost:3000/learn/notification',
         data: {
@@ -157,9 +203,12 @@ Component({
           if (jsonRes["msg"] == "ok") {
             var jsonNoti = jsonRes["notification"];
             var _notis = [];
-            for (var i in jsonNoti) {
-              // console.log(i + "=" + jsonNoti[i]);
-              _notis = _notis.concat(jsonNoti[i]);
+            for (var courseid in jsonNoti) {
+              // console.log(courseid + "=" + jsonNoti[courseid]);
+              for(var i = 0, len = jsonNoti[courseid].length; i < len; i++) {
+                jsonNoti[courseid][i]["courseid"] = courseid;
+              }
+              _notis = _notis.concat(jsonNoti[courseid]);
               // 筛选
             }
             _notis.sort(function (a, b) {
@@ -178,6 +227,7 @@ Component({
           }
         }
       });
+      // 获取作业
       wx.request({
         url: 'http://localhost:3000/learn/homework',
         data: {
@@ -195,9 +245,12 @@ Component({
           if (jsonRes["msg"] == "ok") {
             var jsonHw = jsonRes["homework"];
             var _hws = [];
-            for (var i in jsonHw) {
-              // console.log(i + "=" + jsonHw[i]);
-              _hws = _hws.concat(jsonHw[i]);
+            for (var courseid in jsonHw) {
+              // console.log(courseid + "=" + jsonHw[courseid]);
+              for(var i = 0, len = jsonHw[courseid].length; i < len; i++) {
+                jsonHw[courseid][i]["courseid"] = courseid;
+              }
+              _hws = _hws.concat(jsonHw[courseid]);
               // 筛选
             }
             _hws.sort(function (a, b) {
@@ -216,38 +269,20 @@ Component({
           }
         }
       });
-      wx.request({
-        url: 'http://localhost:3000/learn/courses',
-        data: {
-          username: "2018013402",
-          semesterId: "2021-2022-2"
-        },
-        method: "POST",
-        dataType: 'JSON',
-        responseType: 'text',
-        header: {
-          'content-type': 'application/x-www-form-urlencoded'
-        },
-        success: (res) => {
-          var jsonRes = JSON.parse(res.data);
-          if (jsonRes["msg"] == "ok") {
-            this.setData({
-              courses: jsonRes["courses"]
-            });
-            // console.log("courses:", this.data.courses);
-          } else {
-            console.log(jsonRes);
-          }
-        }
-      });
     },
+
     /**
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
       console.log("onShow");
+      wx.setNavigationBarTitle({
+        title: "网络学堂"
+      });
       this.setData({
-        discardNotifications: wx.getStorageSync('discardNotifications') || []
+        discardNotifications: wx.getStorageSync('discardNotifications') || [],
+        discardHomeworks: wx.getStorageSync('discardHomeworks') || [],
+        discardCourses: wx.getStorageSync('discardCourses') || [],
       });
     },
 

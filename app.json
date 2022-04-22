@@ -8,7 +8,9 @@
     "pages/learn/notification/notification",
     "pages/learn/notification/discards/discards",
     "pages/learn/homework/homework",
+    "pages/learn/homework/discards/discards",
     "pages/learn/course/course",
+    "pages/learn/course/discards/discards",
     "pages/info/index",
     "pages/info/grade/grade"
   ],

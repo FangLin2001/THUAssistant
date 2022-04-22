@@ -13,6 +13,9 @@ Page({
 
   onLoad: function (options) {
     // console.log(options.json, "onLoad");
+    wx.setNavigationBarTitle({
+      title: options.coursename,
+    });
     this.setData({
       noti: JSON.parse(decodeURIComponent(options.json)),
     });

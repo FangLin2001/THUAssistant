@@ -1,26 +1,32 @@
 <!--pages/learn/announcement/announcement.wxml-->
 
+<wxs module="fn">
+  module.exports = {
+    handlePic: function (html) {
+      if (html) {
+        html = html.replace(getRegExp('<img ', 'gi'), '<img style="width:100%;height:auto" ');
+      }
+      return html
+    }
+  }
+</wxs>
+
 <view>
-  <view wx:if="{{noti.hasRead}}">
-    <van-cell inset title="{{noti.title}}">
-    </van-cell>
-    <van-cell inset>
-      <view slot="title">
-        <rich-text nodes="{{noti.content}}"></rich-text>
+  <van-cell inset>
+    <view slot="title">
+      <view class="title">{{noti.title}} <block wx:if="{{!noti.hasRead}}">
+          <van-tag color="#9932CC" plain>未读</van-tag>
+        </block>
+        <block wx:if="{{noti.markedImportant}}">
+          <text space="ensp"> </text>
+          <van-icon name="flag-o" color="red" />
+        </block>
       </view>
-    </van-cell>
-  </view>
-  <view wx:if="{{!noti.hasRead}}">
-    <van-cell inset>
-      <view slot="title">
-        <view>{{noti.title}} <van-tag color="#9932CC" plain>未读</van-tag>
-        </view>
-      </view>
-    </van-cell>
-    <van-cell inset>
-      <view slot="title">
-        <rich-text nodes="{{noti.content}}"></rich-text>
-      </view>
-    </van-cell>
-  </view>
+    </view>
+  </van-cell>
+  <van-cell inset>
+    <view slot="title">
+      <rich-text nodes="{{fn.handlePic(noti.content)}}"></rich-text>
+    </view>
+  </van-cell>
 </view>

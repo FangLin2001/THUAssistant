@@ -3,9 +3,12 @@ Component({
   data: {
     active: 0,
     courseId: -1,
+    courseName: "",
     notifications: [],
     homework: [],
     files: [],
+    discardNotifications: [],
+    discardHomeworks: [],
 
     tabDatas: [{
         "text": "公告"
@@ -56,6 +59,7 @@ Component({
       console.log(options.id, "onLoad");
       this.setData({
         courseId: options.id,
+        courseName: options.name
       });
       // 最初获取数据
       wx.request({
