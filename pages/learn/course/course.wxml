@@ -121,7 +121,7 @@
                 </view>
                 <van-cell inset use-label-slot="true" clickable="true">
                   <view slot="title">
-                    <view class=".title">{{notification.title}}
+                    <view class="title">{{notification.title}}
                       <block wx:if="{{!notification.hasRead}}">
                         <van-tag color="#9932CC" plain>未读</van-tag>
                       </block>
@@ -156,23 +156,31 @@
       <view hidden="{{active != 1}}">
         <van-cell-group>
           <view wx:for="{{homework}}" wx:key="id" wx:for-item="homework" bindtap="hwToTap" data-index="{{index}}" data-hw="{{homework}}">
-            <van-cell inset use-label-slot="true" clickable="true">
-              <view slot="title">
-                <view>{{homework.title}} <block wx:if="{{!homework.submitted}}">
-                    <van-tag color="#9932CC" plain>未交</van-tag>
-                  </block>
+            <block wx:if="{{fn.indexOf(discardHomeworks, homework.id) == -1}}">
+              <van-swipe-cell right-width="{{ 60 }}" data-id="{{homework.id}}" bind:click="hwToTap" data-hw="{{homework}}">
+                <view slot="right">
+                  <view class="van-swipe-cell__right">归档</view>
                 </view>
-              </view>
-              <view slot="label">
-                <view class="van-multi-ellipsis--l2">
-                  <rich-text class="van-cell__label" nodes="{{fn.html2text(homework.content)}}"></rich-text>
-                </view>
-                <view class="list-title">
-                  <view class="left"></view>
-                  <view class="right">{{fn.getTimeLeft(fn.rTime(homework.deadline))}}</view>
-                </view>
-              </view>
-            </van-cell>
+                <van-cell inset use-label-slot="true" clickable="true">
+                  <view slot="title">
+                    <view class="title-course-name">{{fn.id2name(id2name, homework.courseid)}}</view>
+                    <view class="title">{{homework.title}} <block wx:if="{{!homework.submitted}}">
+                        <van-tag color="#9932CC" plain>未交</van-tag>
+                      </block>
+                    </view>
+                  </view>
+                  <view slot="label">
+                    <view class="van-multi-ellipsis--l2">
+                      <rich-text class="van-cell__label" nodes="{{fn.html2text(homework.description)}}"></rich-text>
+                    </view>
+                    <view class="list-title">
+                      <view class="left"></view>
+                      <view class="right">{{fn.getTimeLeft(fn.rTime(homework.deadline))}}</view>
+                    </view>
+                  </view>
+                </van-cell>
+              </van-swipe-cell>
+            </block>
           </view>
         </van-cell-group>
       </view>
@@ -180,31 +188,23 @@
       <view hidden="{{active != 2}}">
         <van-cell-group>
           <view wx:for="{{files}}" wx:key="id" wx:for-item="file" bindtap="fileToTap" data-index="{{index}}">
-            <view wx:if="{{file.isNew}}">
-              <van-cell inset use-label-slot="true" clickable="true">
-                <view slot="title">
-                  <view>{{file.title}} <van-tag color="#9932CC" plain>NEW</van-tag>
-                  </view>
+            <van-cell inset use-label-slot="true" clickable="true">
+              <view slot="title">
+                <view class="title">{{file.title}} <block wx:if="{{file.isNew}}">
+                    <van-tag color="#9932CC" plain>NEW</van-tag>
+                  </block>
                 </view>
-                <view slot="label">
-                  <view class="van-multi-ellipsis--l2">
-                    <rich-text nodes="{{file.description}}"></rich-text>
-                  </view>
+              </view>
+              <view slot="label">
+                <view class="van-multi-ellipsis--l2">
+                  <rich-text class="van-cell__label" nodes="{{fn.html2text(file.description)}}"></rich-text>
                 </view>
-              </van-cell>
-            </view>
-            <view wx:if="{{!file.isNew}}">
-              <van-cell inset use-label-slot="true" clickable="true">
-                <view slot="title">
-                  <view class="van-cell-text"> {{file.title}}</view>
+                <view class="list-title">
+                  <view class="left"></view>
+                  <view class="right">{{fn.getDateDiff(fn.rTime(file.uploadTime))}}</view>
                 </view>
-                <view slot="label">
-                  <view class="van-multi-ellipsis--l2">
-                    <rich-text nodes="{{file.description}}"></rich-text>
-                  </view>
-                </view>
-              </van-cell>
-            </view>
+              </view>
+            </van-cell>
           </view>
         </van-cell-group>
       </view>

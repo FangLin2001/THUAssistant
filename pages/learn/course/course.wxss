@@ -1,8 +1,17 @@
 /* pages/learn/course/course.wxss */
 
+.van-cell__title {
+  /* color: rgb(153,50,204); */
+  min-width: 80%;
+}
+
 .van-cell__label {
   min-width: 80%;
   color: black;
+}
+
+.van-cell__value {
+  min-width: 10%;
 }
 
 .van-swipe-cell__left,

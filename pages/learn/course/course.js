@@ -23,32 +23,63 @@ Component({
   },
   methods: {
     onChange(e) {
-      // wx.showToast({
-      //   title: `切换到 ${e.detail.title}`,
-      //   icon: 'none'
-      // });
       this.setData({
         active: e.detail.index
       });
     },
 
     notiToTap: function (e) {
-      // console.log(e.currentTarget);
-      var notification = e.currentTarget.dataset.noti;
-      // console.log(notification);
+      // console.log(e);
+      if (e.detail == "right") {
+        var tmp = wx.getStorageSync('discardNotifications') || [];
+        tmp.push(e.currentTarget.dataset.id);
+        wx.setStorageSync('discardNotifications', tmp);
+        this.setData({
+          discardNotifications: tmp
+        });
+        // console.log(wx.getStorageSync('discardNotifications'));
+      } else if (e.detail == "cell") {
+        var notification = e.currentTarget.dataset.noti;
+        // console.log(notification);
+        wx.navigateTo({
+          //实现跳转到test界面的函数，url附带跳转时传送的数据
+          url: '/pages/learn/notification/notification?json=' + encodeURIComponent(JSON.stringify(notification)) + "&coursename=" + this.data.courseName,
+        })
+      }
+    },
+    notiToArchive: function (e) {
+      console.log("notiToArchive");
+      var notis = e.currentTarget.dataset.notis;
       wx.navigateTo({
         //实现跳转到test界面的函数，url附带跳转时传送的数据
-        url: '/pages/learn/notification/notification?json=' + encodeURIComponent(JSON.stringify(notification)),
+        url: '/pages/learn/notification/discards/discards?notis=' + encodeURIComponent(JSON.stringify(notis)) + "&type=" + e.currentTarget.dataset.type,
       })
     },
 
     hwToTap: function (e) {
-      // console.log(e.currentTarget);
-      var hw = e.currentTarget.dataset.hw;
-      // console.log(hw);
+      // console.log(e);
+      if (e.detail == "right") {
+        var tmp = wx.getStorageSync('discardHomeworks') || [];
+        tmp.push(e.currentTarget.dataset.id);
+        wx.setStorageSync('discardHomeworks', tmp);
+        this.setData({
+          discardHomeworks: tmp
+        });
+      } else if (e.detail == "cell") {
+        var hw = e.currentTarget.dataset.hw;
+        // console.log(hw);
+        wx.navigateTo({
+          //实现跳转到test界面的函数，url附带跳转时传送的数据
+          url: '/pages/learn/homework/homework?json=' + encodeURIComponent(JSON.stringify(hw)),
+        })
+      }
+    },
+    hwToArchive: function (e) {
+      console.log("hwToArchive");
+      var hws = e.currentTarget.dataset.hws;
       wx.navigateTo({
         //实现跳转到test界面的函数，url附带跳转时传送的数据
-        url: '/pages/learn/homework/homework?json=' + encodeURIComponent(JSON.stringify(hw)),
+        url: '/pages/learn/homework/discards/discards?hws=' + encodeURIComponent(JSON.stringify(hws)) + "&type=" + e.currentTarget.dataset.type,
       })
     },
     
