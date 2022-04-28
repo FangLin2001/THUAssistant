@@ -14,10 +14,13 @@ Page({
    */
   onLoad: function (options) {
     // console.log(options.json, "onLoad");
+    wx.setNavigationBarTitle({
+      title: options.coursename,
+    });
     this.setData({
       hw: JSON.parse(decodeURIComponent(options.json)),
     });
-    console.log("hw:", this.data.hw);
+    // console.log("hw:", this.data.hw);
   },
 
   /**

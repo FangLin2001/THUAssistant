@@ -135,8 +135,8 @@
                       <rich-text class="van-cell__label" nodes="{{fn.html2text(notification.content)}}"></rich-text>
                     </view>
                     <view class="list-title">
-                      <view class="left">{{notification.publisher}}</view>
-                      <view class="right">{{fn.getDateDiff(fn.rTime(notification.publishTime))}}</view>
+                      <view class="left"><van-icon name="user-o"/> {{notification.publisher}}</view>
+                      <view class="right"><van-icon name="underway-o"/> {{fn.getDateDiff(fn.rTime(notification.publishTime))}}</view>
                     </view>
                   </view>
                 </van-cell>
@@ -175,7 +175,7 @@
                     </view>
                     <view class="list-title">
                       <view class="left"></view>
-                      <view class="right">{{fn.getTimeLeft(fn.rTime(homework.deadline))}}</view>
+                      <view class="right"><van-icon name="underway-o"/> {{fn.getTimeLeft(fn.rTime(homework.deadline))}}</view>
                     </view>
                   </view>
                 </van-cell>
@@ -201,7 +201,7 @@
                 </view>
                 <view class="list-title">
                   <view class="left"></view>
-                  <view class="right">{{fn.getDateDiff(fn.rTime(file.uploadTime))}}</view>
+                  <view class="right"><van-icon name="underway-o"/> {{fn.getDateDiff(fn.rTime(file.uploadTime))}}</view>
                 </view>
               </view>
             </van-cell>

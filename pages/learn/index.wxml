@@ -122,7 +122,7 @@
                 <view slot="right">
                   <view class="van-swipe-cell__right">归档</view>
                 </view>
-                <van-cell inset use-label-slot="true" clickable="true">
+                <van-cell use-label-slot="true" clickable="true" title-class="cell-title" value-class="cell-value">
                   <view slot="title">
                     <view class="title-course-name">{{fn.id2name(id2name, notification.courseid)}}</view>
                     <view class=".title">{{notification.title}}
@@ -139,8 +139,8 @@
                       <rich-text class="van-cell__label" nodes="{{fn.html2text(notification.content)}}"></rich-text>
                     </view>
                     <view class="list-title">
-                      <view class="left">{{notification.publisher}}</view>
-                      <view class="right">{{fn.getDateDiff(fn.rTime(notification.publishTime))}}</view>
+                      <view class="left"><van-icon name="user-o"/> {{notification.publisher}}</view>
+                      <view class="right"><van-icon name="underway-o"/> {{fn.getDateDiff(fn.rTime(notification.publishTime))}}</view>
                     </view>
                   </view>
                 </van-cell>
@@ -178,6 +178,9 @@
                     <view class="title">{{homework.title}} <block wx:if="{{!homework.submitted}}">
                         <van-tag color="#9932CC" plain>未交</van-tag>
                       </block>
+                      <block wx:if="{{homework.graded}}">
+                        <van-icon name="completed" color="red" />
+                      </block>
                     </view>
                   </view>
                   <view slot="label">
@@ -186,7 +189,7 @@
                     </view>
                     <view class="list-title">
                       <view class="left"></view>
-                      <view class="right">{{fn.getTimeLeft(fn.rTime(homework.deadline))}}</view>
+                      <view class="right"><van-icon name="underway-o"/> {{fn.getTimeLeft(fn.rTime(homework.deadline))}}</view>
                     </view>
                   </view>
                 </van-cell>
@@ -220,11 +223,11 @@
                 </view>
                 <van-cell inset use-label-slot="true" clickable="true">
                   <view slot="title">
-                    <view class="title">{{course.name}}</view>
+                    <view class="course-name">{{course.name}}</view>
                   </view>
                   <view slot="label">
                     <view wx:for="{{course.timeAndLocation}}" wx:key="*this" wx:for-item="TAL">
-                      <view wx:if="{{TAL != '星期第0节(全周)，'}}">{{TAL}}</view>
+                      <view wx:if="{{TAL != '星期第0节(全周)，'}}" class="van-cell__label">{{TAL}}</view>
                     </view>
                   </view>
                   <view slot="">

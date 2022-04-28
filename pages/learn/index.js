@@ -77,7 +77,7 @@ Component({
         // console.log(hw);
         wx.navigateTo({
           //实现跳转到test界面的函数，url附带跳转时传送的数据
-          url: '/pages/learn/homework/homework?json=' + encodeURIComponent(JSON.stringify(hw)),
+          url: '/pages/learn/homework/homework?json=' + encodeURIComponent(JSON.stringify(hw)) + "&coursename=" + this.data.id2name[hw.courseid],
         })
       }
     },

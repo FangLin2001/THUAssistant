@@ -1,25 +1,111 @@
 <!--pages/learn/homework/homework.wxml-->
 
+<wxs module="fn">
+  var filter = {
+    formatNumber: function (n) {
+      n = n.toString()
+      return n[1] ? n : '0' + n
+    },
+    rTime: function (time) {
+      if (time) time = time.replace("Z", " ");
+      if (time) time = time.replace(getRegExp('-', 'g'), "/");//去除Z，兼容苹果手机
+      if (time) {
+        var ts = time.split('T');
+        if (ts) {
+          var t1 = ts[0];
+          var t2 = ts[1].split('.')[0];
+          time = t1 + " " + t2;
+        }
+      }
+      time = getDate(time).getTime() + 8 * 3600000;//utc时间与北京时间相差8小时
+      date = getDate(time);
+      var y = date.getFullYear();
+      var m = filter.formatNumber(date.getMonth() + 1);
+      var d = filter.formatNumber(date.getDate());
+      var h = filter.formatNumber(date.getHours());
+      var i = filter.formatNumber(date.getMinutes());
+      var s = filter.formatNumber(date.getSeconds());
+      var a = filter.formatNumber(date.getDay());
+      var time_str = y + '/' + m + '/' + d + ' ' + h + ':' + i + ':' + s;
+      return time_str;
+    }
+  }
+  module.exports = {
+    handlePic: function (html) {
+      if (html) {
+        html = html.replace(getRegExp('<img ', 'gi'), '<img style="width:100%;height:auto" ');
+      }
+      return html
+    },
+    rTime: filter.rTime,
+    getDateDiff: function (dateTimeStamp) {
+      var minute = 1000 * 60;
+      var hour = minute * 60;
+      var day = hour * 24;
+      var halfamonth = day * 15;
+      var month = day * 30;
+      var now = getDate();
+      var diffValue = now - dateTimeStamp;
+      if (diffValue < 0) { return; }
+      var monthC = diffValue / month;
+      var weekC = diffValue / (7 * day);
+      var dayC = diffValue / day;
+      var hourC = diffValue / hour;
+      var minC = diffValue / minute;
+      if (monthC >= 1) {
+        result = "" + parseInt(monthC) + "月前";
+      }
+      else if (weekC >= 1) {
+        result = "" + parseInt(weekC) + "周前";
+      }
+      else if (dayC >= 1) {
+        result = "" + parseInt(dayC) + "天前";
+      }
+      else if (hourC >= 1) {
+        result = "" + parseInt(hourC) + "小时前";
+      }
+      else if (minC >= 1) {
+        result = "" + parseInt(minC) + "分钟前";
+      } else
+        result = "刚刚";
+      return result;
+    }
+  }
+</wxs>
+
 <view>
-  <view wx:if="{{hw.submitted}}">
-    <van-cell inset title="{{hw.title}}">
-    </van-cell>
+  <van-cell inset>
+    <view slot="title">
+      <view class="title">{{hw.title}} <block wx:if="{{!hw.submitted}}">
+          <van-tag color="#9932CC" plain>未交</van-tag>
+        </block>
+        <block wx:if="{{hw.graded}}">
+          <text space="ensp"> </text>
+          <van-icon name="flag-o" color="red" />
+        </block>
+      </view>
+      <view class="list-title">
+        <view class="left"></view>
+        <view class="right">{{fn.rTime(hw.deadline)}}</view>
+      </view>
+    </view>
+  </van-cell>
+  <view wx:if="{{hw.description}}">
     <van-cell inset>
       <view slot="title">
-        <rich-text nodes="{{hw.content}}"></rich-text>
+        <rich-text nodes="{{fn.handlePic(hw.description)}}"></rich-text>
       </view>
     </van-cell>
   </view>
-  <view wx:if="{{!hw.submitted}}">
+  <view wx:if="{{hw.attachment}}">
+
+  </view>
+
+  <view color="black" wx:if="{{hw.grade}}">
     <van-cell inset>
       <view slot="title">
-        <view>{{hw.title}} <van-tag color="#9932CC" plain>未交</van-tag>
-        </view>
-      </view>
-    </van-cell>
-    <van-cell inset>
-      <view slot="title">
-        <rich-text nodes="{{hw.content}}"></rich-text>
+        <view wx:if="{{hw.grade}}">成绩：{{hw.grade}}</view>
+        <view wx:if="{{hw.gradeContent}}">详情：{{hw.gradeContent}}</view>
       </view>
     </van-cell>
   </view>

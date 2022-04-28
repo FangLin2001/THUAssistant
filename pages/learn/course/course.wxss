@@ -1,7 +1,35 @@
 /* pages/learn/course/course.wxss */
 
+.van-cell {
+  background-color: #F6F7F1 !important;
+  border: 1px solid#696969 !important;
+  border-radius: 10px !important;
+  margin: 2px 5px 2px 5px !important;
+  width: auto !important;
+  box-shadow: 2px 2px 3px #888888;
+}
+
+.title-course-name {
+  font-size: 14px;
+  color: #1A5599 !important;
+}
+
+.course-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: #1A5599 !important;
+}
+
+.van-tag {
+  background-color: #F6F7F1 !important;
+}
+.title {
+  font-size: 16px;
+  font-weight: bold;
+  color: 	#9932CC;
+}
+
 .van-cell__title {
-  /* color: rgb(153,50,204); */
   min-width: 80%;
 }
 
@@ -24,11 +52,6 @@
   justify-content: center;
   background-color: #f44;
   color: #fff;
-}
-
-.title {
-  font-size: 16px;
-  font-weight: bold;
 }
 
 .archive {
