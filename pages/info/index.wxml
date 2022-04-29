@@ -1,2 +1,74 @@
 <!--pages/info/index.wxml-->
-<text>pages/info/index.wxml</text>
+
+<wxs module="fn">
+  module.exports = {
+    indexOf: function (arr, id) {
+      return arr.indexOf(id);
+    },
+    getClass: function (map, grade) {
+      return map[grade];
+    },
+    getPoint: function (point) {
+      if(point == '4')
+      {
+        return '4.0';
+      }
+      else if(point == '3')
+      {
+        return '3.0';
+      }
+      else if(point == '2')
+      {
+        return '2.0';
+      }
+      else if(point == '1')
+      {
+        return '1.0';
+      }
+      else return point;
+    }
+  }
+</wxs>
+
+<view>
+  <van-tabs active="{{ active }}" bind:change="onChange" swipeable animated sticky color="#9932CC">
+    <van-tab wx:for="{{ tabDatas }}" wx:key="text" title="{{item.text}}">
+
+      <view hidden="{{active != 0}}">
+        <van-cell-group>
+          <view wx:for="{{report}}" wx:key="id" wx:for-item="instance" style="touch-action: none;">
+            <block wx:if="{{fn.indexOf(discardReport, instance.name) == -1}}">
+              <van-swipe-cell right-width="{{ 60 }}">
+                <view slot="right">
+                  <view class="van-swipe-cell__right">隐藏</view>
+                </view>
+                <van-cell use-label-slot="true">
+                  <view slot="title" class="van-ellipsis">
+                    <van-button disabled custom-class="{{fn.getClass(classMap, instance.grade)}}">{{instance.grade}}</van-button>
+                    <text> {{instance.name}}</text>
+                  </view>
+                  <view slot="">
+                    <text>{{instance.credit}}</text>
+                    <text> • </text>
+                    <text wx:if="{{instance.point}}">{{fn.getPoint(instance.point)}}</text>
+                    <text wx:else>N/A</text>
+                  </view>
+                </van-cell>
+              </van-swipe-cell>
+            </block>
+          </view>
+          <block wx:if="{{discardReport.length != 0}}">
+            <van-cell is-link clickable="true" bind:click="reportToConceal" data-report="{{report}}">
+              <view slot="title">
+                <view class="archive">已隐藏</view>
+              </view>
+            </van-cell>
+          </block>
+        </van-cell-group>
+      </view>
+
+      <view hidden="{{active != 1}}">
+      </view>
+    </van-tab>
+  </van-tabs>
+</view>

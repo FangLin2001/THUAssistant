@@ -87,7 +87,7 @@ Component({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-      console.log(options.id, "onLoad");
+      // console.log(options.id, "onLoad");
       this.setData({
         courseId: options.id,
         courseName: options.name

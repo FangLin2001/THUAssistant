@@ -126,7 +126,7 @@
                         <van-tag color="#9932CC" plain>未读</van-tag>
                       </block>
                       <block wx:if="{{notification.markedImportant}}">
-                        <van-icon name="flag-o" color="red" />
+                        <van-icon name="star" color="red" />
                       </block>
                     </view>
                   </view>
@@ -166,6 +166,9 @@
                     <view class="title-course-name">{{fn.id2name(id2name, homework.courseid)}}</view>
                     <view class="title">{{homework.title}} <block wx:if="{{!homework.submitted}}">
                         <van-tag color="#9932CC" plain>未交</van-tag>
+                      </block>
+                      <block wx:if="{{homework.graded}}">
+                        <van-icon name="checked" color="red" />
                       </block>
                     </view>
                   </view>

@@ -30,7 +30,6 @@
 }
 
 .van-cell__title {
-  /* color: rgb(153,50,204); */
   min-width: 80%;
 }
 
@@ -62,7 +61,6 @@
 }
 
 .list-title {
-  /* padding: 10px; */
   display: flex;
   justify-content: space-between;
   align-items: center;

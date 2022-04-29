@@ -1,1 +1,181 @@
 /* pages/info/index.wxss */
+
+.van-cell {
+  /* border: 1px solid#696969 !important;
+  border-radius: 10px !important;
+  margin: 2px 5px 2px 5px !important;
+  width: auto !important;
+  box-shadow: 2px 2px 3px #888888; */
+  align-items: center;
+}
+
+.van-cell__title {
+  min-width: 80%;
+  align-items: center;
+}
+
+.van-cell__label {
+  min-width: 80%;
+}
+
+.van-cell__value {
+  min-width: 20%;
+  text-align: left;
+}
+
+.van-swipe-cell__left,
+.van-swipe-cell__right {
+  height: inherit;
+  display: flex;
+  width: 60px !important;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  background-color: #f44;
+  border-radius: 10px !important;
+  color: #fff;
+}
+
+.archive {
+  color: cornflowerblue;
+  font-size: 16px;
+}
+
+.grade {
+  color: white;
+}
+
+.Apclass {
+  background-color: darkgreen !important;
+  color: white !important;
+  width: 20px !important;
+  height: 30px !important;
+  border-radius: 50% !important;
+  text-align: center !important;
+}
+
+.Aclass {
+  background-color: darkgreen !important;
+  color: white !important;
+  width: 20px !important;
+  height: 30px !important;
+  border-radius: 50% !important;
+  text-align: center !important;
+}
+
+.Amclass {
+  background-color: Green !important;
+  color: white !important;
+  width: 20px !important;
+  height: 30px !important;
+  border-radius: 50% !important;
+  text-align: center !important;
+}
+
+.Bpclass {
+  background-color: OliveDrab !important;
+  color: white !important;
+  width: 20px !important;
+  height: 30px !important;
+  border-radius: 50% !important;
+  text-align: center !important;
+}
+
+.Bclass {
+  background-color: yellowgreen !important;
+  color: white !important;
+  width: 20px !important;
+  height: 30px !important;
+  border-radius: 50% !important;
+  text-align: center !important;
+}
+
+.Bmclass {
+  background-color: Orange !important;
+  color: white !important;
+  width: 20px !important;
+  height: 30px !important;
+  border-radius: 50% !important;
+  text-align: center !important;
+}
+
+.Cpclass {
+  background-color: DarkGoldenrod !important;
+  color: white !important;
+  width: 20px !important;
+  height: 30px !important;
+  border-radius: 50% !important;
+  text-align: center !important;
+}
+
+.Cclass {
+  background-color: Olive !important;
+  color: white !important;
+  width: 20px !important;
+  height: 30px !important;
+  border-radius: 50% !important;
+  text-align: center !important;
+}
+
+.Cmclass {
+  background-color: Chocolate !important;
+  color: white !important;
+  width: 20px !important;
+  height: 30px !important;
+  border-radius: 50% !important;
+  text-align: center !important;
+}
+
+.Dpclass {
+  background-color: SaddleBrown !important;
+  color: white !important;
+  width: 20px !important;
+  height: 30px !important;
+  border-radius: 50% !important;
+  text-align: center !important;
+}
+
+.Dclass {
+  background-color: SaddleBrown !important;
+  color: white !important;
+  width: 20px !important;
+  height: 30px !important;
+  border-radius: 50% !important;
+  text-align: center !important;
+}
+
+.Dmclass {
+  background-color: SaddleBrown !important;
+  color: white !important;
+  width: 20px !important;
+  height: 30px !important;
+  border-radius: 50% !important;
+  text-align: center !important;
+}
+
+.Pclass {
+  background-color: LimeGreen !important;
+  color: white !important;
+  width: 20px !important;
+  height: 30px !important;
+  border-radius: 50% !important;
+  text-align: center !important;
+}
+
+.Fclass {
+  background-color: DarkRed !important;
+  color: white !important;
+  width: 20px !important;
+  height: 30px !important;
+  border-radius: 50% !important;
+  text-align: center !important;
+}
+
+.Wclass {
+  background-color: Silver !important;
+  color: white !important;
+  width: 20px !important;
+  height: 30px !important;
+  border-radius: 50% !important;
+  text-align: center !important;
+}

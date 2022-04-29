@@ -122,7 +122,7 @@
                 <view slot="right">
                   <view class="van-swipe-cell__right">归档</view>
                 </view>
-                <van-cell use-label-slot="true" clickable="true" title-class="cell-title" value-class="cell-value">
+                <van-cell use-label-slot="true" clickable="true">
                   <view slot="title">
                     <view class="title-course-name">{{fn.id2name(id2name, notification.courseid)}}</view>
                     <view class=".title">{{notification.title}}
@@ -130,7 +130,7 @@
                         <van-tag color="#9932CC" plain>未读</van-tag>
                       </block>
                       <block wx:if="{{notification.markedImportant}}">
-                        <van-icon name="flag-o" color="red" />
+                        <van-icon name="star" color="red" />
                       </block>
                     </view>
                   </view>
@@ -179,7 +179,7 @@
                         <van-tag color="#9932CC" plain>未交</van-tag>
                       </block>
                       <block wx:if="{{homework.graded}}">
-                        <van-icon name="completed" color="red" />
+                        <van-icon name="checked" color="red" />
                       </block>
                     </view>
                   </view>

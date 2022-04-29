@@ -21,7 +21,6 @@ Component({
         "text": "课程"
       }
     ],
-
   },
 
   methods: {
@@ -151,124 +150,125 @@ Component({
           var jsonRes = JSON.parse(res.data);
           if (jsonRes["msg"] == "ok") {
             console.log("login success");
-          }
-        }
-      });
-      // 获取课程和缓存id2name
-      wx.request({
-        url: 'http://localhost:3000/learn/courses',
-        data: {
-          username: "2018013402",
-          semesterId: "2021-2022-2"
-        },
-        method: "POST",
-        dataType: 'JSON',
-        responseType: 'text',
-        header: {
-          'content-type': 'application/x-www-form-urlencoded'
-        },
-        success: (res) => {
-          var jsonRes = JSON.parse(res.data);
-          var id2name_ = {};
-          for (var i in jsonRes["courses"]) {
-            id2name_[jsonRes["courses"][i]["id"]] = jsonRes["courses"][i]["name"];
-          }
-          wx.setStorageSync('id2name', id2name_);
-          if (jsonRes["msg"] == "ok") {
-            this.setData({
-              courses: jsonRes["courses"],
-              id2name: id2name_
-            });
-            // console.log("courses:", this.data.courses);
-          } else {
-            console.log(jsonRes);
-          }
-        }
-      });
-      // 获取通知
-      wx.request({
-        url: 'http://localhost:3000/learn/notification',
-        data: {
-          username: "2018013402",
-          semesterId: "2021-2022-2"
-        },
-        method: "POST",
-        dataType: 'JSON',
-        responseType: 'text',
-        header: {
-          'content-type': 'application/x-www-form-urlencoded'
-        },
-        success: (res) => {
-          var jsonRes = JSON.parse(res.data);
-          if (jsonRes["msg"] == "ok") {
-            var jsonNoti = jsonRes["notification"];
-            var _notis = [];
-            for (var courseid in jsonNoti) {
-              // console.log(courseid + "=" + jsonNoti[courseid]);
-              for(var i = 0, len = jsonNoti[courseid].length; i < len; i++) {
-                jsonNoti[courseid][i]["courseid"] = courseid;
+          };
+
+          // 获取课程和缓存id2name
+          wx.request({
+            url: 'http://localhost:3000/learn/courses',
+            data: {
+              username: "2018013402",
+              semesterId: "2021-2022-2"
+            },
+            method: "POST",
+            dataType: 'JSON',
+            responseType: 'text',
+            header: {
+              'content-type': 'application/x-www-form-urlencoded'
+            },
+            success: (res) => {
+              var jsonRes = JSON.parse(res.data);
+              var id2name_ = {};
+              for (var i in jsonRes["courses"]) {
+                id2name_[jsonRes["courses"][i]["id"]] = jsonRes["courses"][i]["name"];
               }
-              _notis = _notis.concat(jsonNoti[courseid]);
-              // 筛选
-            }
-            _notis.sort(function (a, b) {
-              if (a.hasRead ^ b.hasRead) {
-                return (a.hasRead) ? 1 : -1
+              wx.setStorageSync('id2name', id2name_);
+              if (jsonRes["msg"] == "ok") {
+                that.setData({
+                  courses: jsonRes["courses"],
+                  id2name: id2name_
+                });
+                // console.log("courses:", this.data.courses);
               } else {
-                return (that.rTime(a.publishTime) > that.rTime(b.publishTime)) ? -1 : 1;
+                console.log(jsonRes);
               }
-            });
-            this.setData({
-              notifications: _notis,
-            });
-            // console.log("notifications:", this.data.notifications);
-          } else {
-            console.log(jsonRes);
-          }
-        }
-      });
-      // 获取作业
-      wx.request({
-        url: 'http://localhost:3000/learn/homework',
-        data: {
-          username: "2018013402",
-          semesterId: "2021-2022-2"
-        },
-        method: "POST",
-        dataType: 'JSON',
-        responseType: 'text',
-        header: {
-          'content-type': 'application/x-www-form-urlencoded'
-        },
-        success: (res) => {
-          var jsonRes = JSON.parse(res.data);
-          if (jsonRes["msg"] == "ok") {
-            var jsonHw = jsonRes["homework"];
-            var _hws = [];
-            for (var courseid in jsonHw) {
-              // console.log(courseid + "=" + jsonHw[courseid]);
-              for(var i = 0, len = jsonHw[courseid].length; i < len; i++) {
-                jsonHw[courseid][i]["courseid"] = courseid;
-              }
-              _hws = _hws.concat(jsonHw[courseid]);
-              // 筛选
             }
-            _hws.sort(function (a, b) {
-              if (a.submitted ^ b.submitted) {
-                return (a.submitted) ? 1 : -1
+          });
+          // 获取通知
+          wx.request({
+            url: 'http://localhost:3000/learn/notification',
+            data: {
+              username: "2018013402",
+              semesterId: "2021-2022-2"
+            },
+            method: "POST",
+            dataType: 'JSON',
+            responseType: 'text',
+            header: {
+              'content-type': 'application/x-www-form-urlencoded'
+            },
+            success: (res) => {
+              var jsonRes = JSON.parse(res.data);
+              if (jsonRes["msg"] == "ok") {
+                var jsonNoti = jsonRes["notification"];
+                var _notis = [];
+                for (var courseid in jsonNoti) {
+                  // console.log(courseid + "=" + jsonNoti[courseid]);
+                  for (var i = 0, len = jsonNoti[courseid].length; i < len; i++) {
+                    jsonNoti[courseid][i]["courseid"] = courseid;
+                  }
+                  _notis = _notis.concat(jsonNoti[courseid]);
+                  // 筛选
+                }
+                _notis.sort(function (a, b) {
+                  if (a.hasRead ^ b.hasRead) {
+                    return (a.hasRead) ? 1 : -1
+                  } else {
+                    return (that.rTime(a.publishTime) > that.rTime(b.publishTime)) ? -1 : 1;
+                  }
+                });
+                that.setData({
+                  notifications: _notis,
+                });
+                // console.log("notifications:", this.data.notifications);
               } else {
-                return (that.rTime(a.deadline) > that.rTime(b.deadline)) ? 1 : -1;
+                console.log(jsonRes);
               }
-            });
-            this.setData({
-              homeworks: _hws,
-            });
-            // console.log("homeworks:", this.data.homeworks);
-          } else {
-            console.log(jsonRes);
-          }
+            }
+          });
+          // 获取作业
+          wx.request({
+            url: 'http://localhost:3000/learn/homework',
+            data: {
+              username: "2018013402",
+              semesterId: "2021-2022-2"
+            },
+            method: "POST",
+            dataType: 'JSON',
+            responseType: 'text',
+            header: {
+              'content-type': 'application/x-www-form-urlencoded'
+            },
+            success: (res) => {
+              var jsonRes = JSON.parse(res.data);
+              if (jsonRes["msg"] == "ok") {
+                var jsonHw = jsonRes["homework"];
+                var _hws = [];
+                for (var courseid in jsonHw) {
+                  // console.log(courseid + "=" + jsonHw[courseid]);
+                  for (var i = 0, len = jsonHw[courseid].length; i < len; i++) {
+                    jsonHw[courseid][i]["courseid"] = courseid;
+                  }
+                  _hws = _hws.concat(jsonHw[courseid]);
+                  // 筛选
+                }
+                _hws.sort(function (a, b) {
+                  if (a.submitted ^ b.submitted) {
+                    return (a.submitted) ? 1 : -1
+                  } else {
+                    return (that.rTime(a.deadline) > that.rTime(b.deadline)) ? 1 : -1;
+                  }
+                });
+                that.setData({
+                  homeworks: _hws,
+                });
+              } else {
+                console.log(jsonRes);
+              }
+            }
+          });
         }
       });
+
     },
 
     /**
