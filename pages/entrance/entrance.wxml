@@ -1,8 +1,16 @@
 <!--pages/entrance/entrance.wxml-->
+<block wx:if="{{!hasLoginInfo}}">
+  <van-dialog use-slot title="登录" show="{{true}}" confirm-button-open-type="getUserInfo" before-close="{{beforeClose}}" bind:getuserinfo="getUserInfo">
+    <van-cell-group>
+      <van-field model:value="{{username}}" clearable type="number" label="学号" placeholder="请输入学号" maxlength="10" />
+      <van-field model:value="{{password}}" clearable password="{{hide}}" label="密码" placeholder="请输入密码" border="{{false}}" icon="{{ hide ? 'closed-eye' : 'eye-o' }}" bind:click-icon="clickEye" />
+    </van-cell-group>
+  </van-dialog>
+</block>
 <view class="常用服务">
   <van-cell inset>
     <view slot="icon">
-      <van-icon name="apps-o" size="24px" color="#9932CC"/>
+      <van-icon name="apps-o" size="24px" color="#9932CC" />
     </view>
     <view slot="title">
       <view class="sep-cell-text">常用服务</view>
@@ -10,6 +18,7 @@
   </van-cell>
   <van-grid clickable column-num="3">
     <van-grid-item icon="home-o" link-type="navigateTo" url="/pages/learn/index" text="网络学堂" />
+    <van-grid-item icon="search" link-type="navigateTo" url="/pages/info/index" text="GPA" />
     <van-grid-item icon="search" link-type="navigateTo" url="/pages/info/index" text="GPA" />
   </van-grid>
 </view>

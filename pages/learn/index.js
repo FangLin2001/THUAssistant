@@ -3,6 +3,7 @@
 Component({
   data: {
     active: 0,
+    currentSemester: "2021-2022-2",
     notifications: [],
     discardNotifications: [],
     homeworks: [],
@@ -125,6 +126,20 @@ Component({
      */
     onLoad: function (options) {
       console.log("onLoad");
+      const loginInfo = wx.getStorageSync('loginInfo') || {};
+      if (Object.keys(loginInfo).length == 0) {
+        wx.navigateBack({
+          delta: 0,
+          complete: () => {
+            wx.showToast({
+              title: `未授权登录`,
+              icon: 'none'
+            });
+          }
+        });
+        return;
+      }
+
       this.setData({
         discardNotifications: wx.getStorageSync('discardNotifications') || [],
         discardHomeworks: wx.getStorageSync('discardHomeworks') || [],
@@ -137,14 +152,15 @@ Component({
       wx.request({
         url: 'http://localhost:3000/learn/login',
         data: {
-          username: "2018013402",
-          password: "20010120FangLin"
+          username: loginInfo.username,
+          // password: "20010120FangLin"
         },
         method: "POST",
         dataType: 'JSON',
         responseType: 'text',
         header: {
-          'content-type': 'application/x-www-form-urlencoded'
+          'content-type': 'application/x-www-form-urlencoded',
+          'authorization': loginInfo.token,
         },
         success(res) {
           var jsonRes = JSON.parse(res.data);
@@ -156,14 +172,15 @@ Component({
           wx.request({
             url: 'http://localhost:3000/learn/courses',
             data: {
-              username: "2018013402",
-              semesterId: "2021-2022-2"
+              username: loginInfo.username,
+              semesterId: that.data.currentSemester
             },
             method: "POST",
             dataType: 'JSON',
             responseType: 'text',
             header: {
-              'content-type': 'application/x-www-form-urlencoded'
+              'content-type': 'application/x-www-form-urlencoded',
+              'authorization': loginInfo.token,
             },
             success: (res) => {
               var jsonRes = JSON.parse(res.data);
@@ -187,14 +204,15 @@ Component({
           wx.request({
             url: 'http://localhost:3000/learn/notification',
             data: {
-              username: "2018013402",
-              semesterId: "2021-2022-2"
+              username: loginInfo.username,
+              semesterId: that.data.currentSemester
             },
             method: "POST",
             dataType: 'JSON',
             responseType: 'text',
             header: {
-              'content-type': 'application/x-www-form-urlencoded'
+              'content-type': 'application/x-www-form-urlencoded',
+              'authorization': loginInfo.token,
             },
             success: (res) => {
               var jsonRes = JSON.parse(res.data);
@@ -229,14 +247,15 @@ Component({
           wx.request({
             url: 'http://localhost:3000/learn/homework',
             data: {
-              username: "2018013402",
-              semesterId: "2021-2022-2"
+              username: loginInfo.username,
+              semesterId: that.data.currentSemester
             },
             method: "POST",
             dataType: 'JSON',
             responseType: 'text',
             header: {
-              'content-type': 'application/x-www-form-urlencoded'
+              'content-type': 'application/x-www-form-urlencoded',
+              'authorization': loginInfo.token,
             },
             success: (res) => {
               var jsonRes = JSON.parse(res.data);

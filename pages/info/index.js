@@ -48,6 +48,20 @@ Page({
    */
   onLoad: function (options) {
     console.log("onLoad");
+    const loginInfo = wx.getStorageSync('loginInfo');
+    if (!loginInfo) {
+      wx.navigateBack({
+        delta: 0,
+        complete: () => {
+          wx.showToast({
+            title: `未授权登录`,
+            icon: 'none'
+          });
+        }
+      });
+      return;
+    }
+
     this.setData({
       discardReport: wx.getStorageSync('discardReport') || [],
     });
@@ -56,14 +70,15 @@ Page({
     wx.request({
       url: 'http://localhost:3000/info/login',
       data: {
-        username: "2018013402",
-        password: "20010120FangLin"
+        username: loginInfo.username,
+        // password: "20010120FangLin"
       },
       method: "POST",
       dataType: 'JSON',
       responseType: 'text',
       header: {
-        'content-type': 'application/x-www-form-urlencoded'
+        'content-type': 'application/x-www-form-urlencoded',
+        'authorization': loginInfo.token,
       },
       success(res) {
         var jsonRes = JSON.parse(res.data);
@@ -75,13 +90,14 @@ Page({
         wx.request({
           url: 'http://localhost:3000/info/report',
           data: {
-            username: "2018013402"
+            username: loginInfo.username
           },
           method: "POST",
           dataType: 'JSON',
           responseType: 'text',
           header: {
-            'content-type': 'application/x-www-form-urlencoded'
+            'content-type': 'application/x-www-form-urlencoded',
+            'authorization': loginInfo.token,
           },
           success: (res) => {
             var jsonRes = JSON.parse(res.data);

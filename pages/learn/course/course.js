@@ -88,6 +88,8 @@ Component({
      */
     onLoad: function (options) {
       // console.log(options.id, "onLoad");
+      const loginInfo = wx.getStorageSync('loginInfo');
+
       this.setData({
         courseId: options.id,
         courseName: options.name
@@ -103,7 +105,8 @@ Component({
         dataType: 'JSON',
         responseType: 'text',
         header: {
-          'content-type': 'application/x-www-form-urlencoded'
+          'content-type': 'application/x-www-form-urlencoded',
+          'authorization': loginInfo.token,
         },
         success: (res) => {
           var jsonRes = JSON.parse(res.data);
