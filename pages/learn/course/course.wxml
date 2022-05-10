@@ -135,8 +135,12 @@
                       <rich-text class="van-cell__label" nodes="{{fn.html2text(notification.content)}}"></rich-text>
                     </view>
                     <view class="list-title">
-                      <view class="left"><van-icon name="user-o"/> {{notification.publisher}}</view>
-                      <view class="right"><van-icon name="underway-o"/> {{fn.getDateDiff(fn.rTime(notification.publishTime))}}</view>
+                      <view class="left">
+                        <van-icon name="user-o" /> {{notification.publisher}}
+                      </view>
+                      <view class="right">
+                        <van-icon name="underway-o" /> {{fn.getDateDiff(fn.rTime(notification.publishTime))}}
+                      </view>
                     </view>
                   </view>
                 </van-cell>
@@ -178,7 +182,9 @@
                     </view>
                     <view class="list-title">
                       <view class="left"></view>
-                      <view class="right"><van-icon name="underway-o"/> {{fn.getTimeLeft(fn.rTime(homework.deadline))}}</view>
+                      <view class="right">
+                        <van-icon name="underway-o" /> {{fn.getTimeLeft(fn.rTime(homework.deadline))}}
+                      </view>
                     </view>
                   </view>
                 </van-cell>
@@ -190,11 +196,14 @@
       <!-- 文件 -->
       <view hidden="{{active != 2}}">
         <van-cell-group>
-          <view wx:for="{{files}}" wx:key="id" wx:for-item="file" bindtap="fileToTap" data-index="{{index}}">
+          <view wx:for="{{files}}" wx:key="id" wx:for-item="file" bindtap="fileToTap" data-file="{{file}}">
             <van-cell inset use-label-slot="true" clickable="true">
               <view slot="title">
                 <view class="title">{{file.title}} <block wx:if="{{file.isNew}}">
                     <van-tag color="#9932CC" plain>NEW</van-tag>
+                  </block>
+                  <block wx:if="{{notification.markedImportant}}">
+                    <van-icon name="star" color="red" />
                   </block>
                 </view>
               </view>
@@ -204,7 +213,9 @@
                 </view>
                 <view class="list-title">
                   <view class="left"></view>
-                  <view class="right"><van-icon name="underway-o"/> {{fn.getDateDiff(fn.rTime(file.uploadTime))}}</view>
+                  <view class="right">
+                    <van-icon name="underway-o" /> {{fn.getDateDiff(fn.rTime(file.uploadTime))}}
+                  </view>
                 </view>
               </view>
             </van-cell>

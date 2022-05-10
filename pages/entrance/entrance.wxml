@@ -17,8 +17,21 @@
     </view>
   </van-cell>
   <van-grid clickable column-num="3">
-    <van-grid-item icon="home-o" link-type="navigateTo" url="/pages/learn/index" text="网络学堂" />
-    <van-grid-item icon="search" link-type="navigateTo" url="/pages/info/index" text="GPA" />
-    <van-grid-item icon="search" link-type="navigateTo" url="/pages/info/index" text="GPA" />
+    <van-grid-item link-type="navigateTo" url="/pages/learn/index" text="网络学堂">
+      <view slot="icon">
+        <van-icon name="home-o" color="blue" />
+      </view>
+    </van-grid-item>
+    <van-grid-item link-type="navigateTo" url="/pages/info/index" text="GPA">
+      <view slot="icon">
+        <van-icon name="search" color="red" />
+      </view>
+    </van-grid-item>
+    <van-grid-item text="其他模块">
+      <view slot="icon">
+        <van-icon name="ellipsis" color="green" />
+      </view>
+    </van-grid-item>
+    <van-grid-item wx:for="{{ tabDatas }}" wx:key="index" title="{{item.text}}"></van-grid-item>
   </van-grid>
 </view>

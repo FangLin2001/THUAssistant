@@ -1,4 +1,6 @@
 // pages/learn/course/course.js
+const util = require('../../../utils/util') // 引入封装过的加载提示
+
 Component({
   data: {
     active: 0,
@@ -70,7 +72,7 @@ Component({
         // console.log(hw);
         wx.navigateTo({
           //实现跳转到test界面的函数，url附带跳转时传送的数据
-          url: '/pages/learn/homework/homework?json=' + encodeURIComponent(JSON.stringify(hw)),
+          url: '/pages/learn/homework/homework?json=' + encodeURIComponent(JSON.stringify(hw)) + "&coursename=" + this.data.courseName,
         })
       }
     },
@@ -82,7 +84,67 @@ Component({
         url: '/pages/learn/homework/discards/discards?hws=' + encodeURIComponent(JSON.stringify(hws)) + "&type=" + e.currentTarget.dataset.type,
       })
     },
-    
+
+    previewFile: function(fileLink, fileType_) {
+      //console.log(fileLink, fileType_);
+      if (!fileLink) {
+        return false
+      }
+      util.showLoading()
+      var cookieStr = "";
+      const cookies = wx.getStorageSync('cookies') || [];
+      for(var cookieJson of cookies)
+      {
+        //console.log(cookieJson);
+        if(cookieJson.domain === "learn.tsinghua.edu.cn")
+        {
+          if(cookieStr !== "") cookieStr=cookieStr.concat(";");
+          cookieStr=cookieStr.concat(cookieJson.key, "=", cookieJson.value);
+        }
+      }
+      //console.log(cookieStr);
+
+      // 单次下载允许的最大文件为 200MB
+      wx.downloadFile({
+        url: fileLink,
+        header: {
+          'Cookie': cookieStr
+        },
+        success: function (res) {
+          console.log(res, "wx.downloadFile success res")
+          if (res.statusCode != 200 || res.dataLength < 100) {
+            util.hideLoadingWithErrorTips()
+            return false
+          }
+          
+          var Path = res.tempFilePath //返回的文件临时地址，用于后面打开本地预览所用
+          wx.openDocument({
+            filePath: Path,
+            fileType: fileType_,
+            showMenu: true,
+            success: function (res) {
+              console.log('打开成功');
+              util.hideLoading()
+            },
+            fail: function (err) {
+              console.log(err, "wx.openDocument fail err");
+              util.hideLoadingWithErrorTips()
+            }
+          })
+        },
+        fail: function (err) {
+          console.log(err, "wx.downloadFile fail err");
+          util.hideLoadingWithErrorTips()
+        }
+      })
+    },
+    fileToTap: function (e) {
+      // console.log(e);
+      var file = e.currentTarget.dataset.file;
+      // console.log(hw);
+      this.previewFile(file.downloadUrl, file.fileType);
+    },
+
     /**
      * 生命周期函数--监听页面加载
      */
@@ -118,7 +180,10 @@ Component({
               files: jsonRes["files"],
             });
             // this.data.notifications.sort(function(a, b){if(a.hasRead ^ b.hasRead){return (a.hasRead)? -1:1} else {return a.publishTime - b.publishTime}});
-            this.data.homework.sort(function(a, b){/*if(a.submitted ^ b.submitted){console.log("diff");return (a.submitted)? -1:1} else {*/return b.deadline - a.deadline;});
+            this.data.homework.sort(function (a, b) {
+              /*if(a.submitted ^ b.submitted){console.log("diff");return (a.submitted)? -1:1} else {*/
+              return b.deadline - a.deadline;
+            });
             // this.data.files.sort(function(a, b){return a.uploadTime - b.uploadTime});
           } else {
             console.log(jsonRes);

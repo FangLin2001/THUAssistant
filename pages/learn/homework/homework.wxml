@@ -86,7 +86,7 @@
       </view>
       <view class="list-title">
         <view class="left"></view>
-        <view class="right">{{fn.rTime(hw.deadline)}}</view>
+        <view class="right">截止时间：{{fn.rTime(hw.deadline)}}</view>
       </view>
     </view>
   </van-cell>
@@ -104,7 +104,7 @@
   <view color="black" wx:if="{{hw.grade}}">
     <van-cell inset>
       <view slot="title">
-        <view wx:if="{{hw.grade}}">成绩：{{hw.grade}}</view>
+        <view wx:if="{{hw.grade  && hw.grade >= 0}}">成绩：{{hw.grade}}</view>
         <view wx:if="{{hw.gradeContent}}">详情：{{hw.gradeContent}}</view>
       </view>
     </van-cell>

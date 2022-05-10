@@ -20,7 +20,6 @@ Page({
     this.setData({
       hw: JSON.parse(decodeURIComponent(options.json)),
     });
-    // console.log("hw:", this.data.hw);
   },
 
   /**

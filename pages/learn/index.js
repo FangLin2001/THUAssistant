@@ -166,6 +166,7 @@ Component({
           var jsonRes = JSON.parse(res.data);
           if (jsonRes["msg"] == "ok") {
             console.log("login success");
+            wx.setStorageSync('cookies', jsonRes.cookieJar.cookies);
           };
 
           // 获取课程和缓存id2name
