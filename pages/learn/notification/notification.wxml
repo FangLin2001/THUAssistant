@@ -33,7 +33,7 @@
   module.exports = {
     handlePic: function (html) {
       if (html) {
-        html = html.replace(getRegExp('<img ', 'gi'), '<img style="width:100%;height:auto" ');
+        html = html.replace(getRegExp('<img ', 'gi'), '<img style="max-width:100%;height:auto" ');
       }
       return html
     },
@@ -92,10 +92,7 @@
   </van-cell>
   <van-cell inset>
     <view slot="title">
-      <rich-text nodes="{{fn.handlePic(noti.content)}}"></rich-text>
+      <mp-html content="{{fn.handlePic(noti.content)}}"></mp-html>
     </view>
   </van-cell>
-  <view wx:if="{{noti.attachment}}">
-
-  </view>
 </view>

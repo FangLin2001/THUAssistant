@@ -21,12 +21,20 @@ const showLoading = (tips = '加载中...') => {
     title: tips,
   })
 }
- 
+
 const hideLoading = () => {
   wx.hideLoading()
   wx.hideNavigationBarLoading()
 }
- 
+
+const showErrorTips = (err) => {
+  wx.showToast({
+    title: err,
+    icon: 'error',
+    duration: 2000
+  })
+}
+
 const hideLoadingWithErrorTips = (err = '加载失败...') => {
   hideLoading()
   wx.showToast({
@@ -41,4 +49,5 @@ module.exports = {
   showLoading: showLoading,
   hideLoading: hideLoading,
   hideLoadingWithErrorTips: hideLoadingWithErrorTips,
+  showErrorTips: showErrorTips,
 }

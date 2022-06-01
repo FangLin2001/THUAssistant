@@ -1,7 +1,7 @@
 <!--pages/learn/notification/discards.wxml-->
 
 <wxs module="fn">
-var filter = {
+  var filter = {
     formatNumber: function (n) {
       n = n.toString()
       return n[1] ? n : '0' + n
@@ -81,7 +81,11 @@ var filter = {
 <van-cell-group>
   <block wx:if="{{type == 'archive'}}">
     <block wx:if="{{discardNotifications.length === 0}}">
-      <van-cell class="empty" inset title="这里空空如也" />
+      <van-cell inset>
+        <view slot="title" class="empty">
+          这里空空如也！
+        </view>
+      </van-cell>
     </block>
     <block wx:else>
       <view wx:for="{{notis}}" wx:key="id" wx:for-item="notification" style="touch-action: none;">
@@ -97,7 +101,7 @@ var filter = {
                     <van-tag color="#9932CC" plain>未读</van-tag>
                   </block>
                   <block wx:if="{{notification.markedImportant}}">
-                    <van-icon name="flag-o" color="red" />
+                    <van-icon name="star" color="red" />
                   </block>
                 </view>
               </view>
@@ -106,8 +110,12 @@ var filter = {
                   <rich-text class="van-cell__label" nodes="{{fn.html2text(notification.content)}}"></rich-text>
                 </view>
                 <view class="list-title">
-                  <view class="left">{{notification.publisher}}</view>
-                  <view class="right">{{fn.getDateDiff(fn.rTime(notification.publishTime))}}</view>
+                  <view class="left">
+                    <van-icon name="user-o" /> {{notification.publisher}}
+                  </view>
+                  <view class="right">
+                    <van-icon name="underway-o" /> {{fn.getDateDiff(fn.rTime(notification.publishTime))}}
+                  </view>
                 </view>
               </view>
             </van-cell>
@@ -131,7 +139,7 @@ var filter = {
                     <van-tag color="#9932CC" plain>未读</van-tag>
                   </block>
                   <block wx:if="{{notification.markedImportant}}">
-                    <van-icon name="flag-o" color="red" />
+                    <van-icon name="star" color="red" />
                   </block>
                 </view>
               </view>
@@ -140,8 +148,12 @@ var filter = {
                   <rich-text class="van-cell__label" nodes="{{fn.html2text(notification.content)}}"></rich-text>
                 </view>
                 <view class="list-title">
-                  <view class="left">{{notification.publisher}}</view>
-                  <view class="right">{{fn.getDateDiff(fn.rTime(notification.publishTime))}}</view>
+                  <view class="left">
+                    <van-icon name="user-o" /> {{notification.publisher}}
+                  </view>
+                  <view class="right">
+                    <van-icon name="underway-o" /> {{fn.getDateDiff(fn.rTime(notification.publishTime))}}
+                  </view>
                 </view>
               </view>
             </van-cell>

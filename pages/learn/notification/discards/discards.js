@@ -1,6 +1,5 @@
 // pages/learn/notification/discards.js
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -26,7 +25,7 @@ Page({
       // console.log(notification);
       wx.navigateTo({
         //实现跳转到test界面的函数，url附带跳转时传送的数据
-        url: '/pages/learn/notification/notification?json=' + encodeURIComponent(JSON.stringify(notification)),
+        url: '/pages/learn/notification/notification?json=' + encodeURIComponent(JSON.stringify(notification)) + "&coursename=" + this.data.id2name[notification.courseid],
       })
     }
   },
@@ -42,6 +41,9 @@ Page({
       id2name: wx.getStorageSync('id2name'),
       discardNotifications: wx.getStorageSync('discardNotifications') || [],
       discardCourses: wx.getStorageSync('discardCourses') || [],
+    });
+    wx.setNavigationBarTitle({
+      title: '已归档',
     });
   },
 });

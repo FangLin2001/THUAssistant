@@ -41,5 +41,8 @@ Page({
       discardHomeworks: wx.getStorageSync('discardHomeworks') || [],
       discardCourses: wx.getStorageSync('discardCourses') || [],
     });
+    wx.setNavigationBarTitle({
+      title: '已归档',
+    });
   },
 });

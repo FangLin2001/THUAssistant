@@ -17,21 +17,19 @@
     </view>
   </van-cell>
   <van-grid clickable column-num="3">
-    <van-grid-item link-type="navigateTo" url="/pages/learn/index" text="网络学堂">
-      <view slot="icon">
-        <van-icon name="home-o" color="blue" />
-      </view>
-    </van-grid-item>
-    <van-grid-item link-type="navigateTo" url="/pages/info/index" text="GPA">
-      <view slot="icon">
-        <van-icon name="search" color="red" />
-      </view>
-    </van-grid-item>
+    <view wx:for="{{modules}}" wx:key="url">
+      <block wx:if="{{item.status}}">
+        <van-grid-item link-type="navigateTo" url="{{item.url}}" text="{{item.text}}">
+          <view slot="icon">
+            <van-icon name="{{item.icon_name}}" color="{{item.icon_color}}" />
+          </view>
+        </van-grid-item>
+      </block>
+    </view>
     <van-grid-item text="其他模块">
       <view slot="icon">
         <van-icon name="ellipsis" color="green" />
       </view>
     </van-grid-item>
-    <van-grid-item wx:for="{{ tabDatas }}" wx:key="index" title="{{item.text}}"></van-grid-item>
   </van-grid>
 </view>

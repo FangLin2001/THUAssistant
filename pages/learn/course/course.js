@@ -85,21 +85,23 @@ Component({
       })
     },
 
-    previewFile: function(fileLink, fileType_) {
+    previewFile: function (fileLink, fileType_) {
       //console.log(fileLink, fileType_);
       if (!fileLink) {
         return false
       }
+      if (!(['doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'pdf'].includes(fileType_))) {
+        util.showErrorTips("不支持预览该项")
+        return false;
+      }
       util.showLoading()
       var cookieStr = "";
       const cookies = wx.getStorageSync('cookies') || [];
-      for(var cookieJson of cookies)
-      {
+      for (var cookieJson of cookies) {
         //console.log(cookieJson);
-        if(cookieJson.domain === "learn.tsinghua.edu.cn")
-        {
-          if(cookieStr !== "") cookieStr=cookieStr.concat(";");
-          cookieStr=cookieStr.concat(cookieJson.key, "=", cookieJson.value);
+        if (cookieJson.domain === "learn.tsinghua.edu.cn") {
+          if (cookieStr !== "") cookieStr = cookieStr.concat(";");
+          cookieStr = cookieStr.concat(cookieJson.key, "=", cookieJson.value);
         }
       }
       //console.log(cookieStr);
@@ -113,10 +115,10 @@ Component({
         success: function (res) {
           console.log(res, "wx.downloadFile success res")
           if (res.statusCode != 200 || res.dataLength < 100) {
-            util.hideLoadingWithErrorTips()
-            return false
+            util.hideLoadingWithErrorTips("下载文件失败");
+            return false;
           }
-          
+
           var Path = res.tempFilePath //返回的文件临时地址，用于后面打开本地预览所用
           wx.openDocument({
             filePath: Path,
@@ -128,13 +130,13 @@ Component({
             },
             fail: function (err) {
               console.log(err, "wx.openDocument fail err");
-              util.hideLoadingWithErrorTips()
+              util.hideLoadingWithErrorTips('打开文件失败');
             }
           })
         },
         fail: function (err) {
           console.log(err, "wx.downloadFile fail err");
-          util.hideLoadingWithErrorTips()
+          util.hideLoadingWithErrorTips("下载文件错误")
         }
       })
     },
@@ -160,7 +162,7 @@ Component({
       wx.request({
         url: 'http://localhost:3000/learn/courseDetail',
         data: {
-          username: "2018013402",
+          username: loginInfo.username,
           courseId: this.data.courseId
         },
         method: "POST",

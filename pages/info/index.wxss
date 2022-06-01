@@ -9,6 +9,22 @@
   align-items: center;
 }
 
+.indexCell {
+  background-color: LemonChiffon !important;
+}
+
+.indexValue {
+  font-size: 16px;
+  font-weight: bold;
+  color: 	#9932CC !important;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: bold;
+  color: 	#9932CC;
+}
+
 .van-cell__title {
   min-width: 80%;
   align-items: center;

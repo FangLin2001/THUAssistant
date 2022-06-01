@@ -212,7 +212,7 @@
                   <rich-text class="van-cell__label" nodes="{{fn.html2text(file.description)}}"></rich-text>
                 </view>
                 <view class="list-title">
-                  <view class="left"></view>
+                  <view class="left"><van-icon name="info-o" /> {{file.fileType}}</view>
                   <view class="right">
                     <van-icon name="underway-o" /> {{fn.getDateDiff(fn.rTime(file.uploadTime))}}
                   </view>

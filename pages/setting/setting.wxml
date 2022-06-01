@@ -1,2 +1,50 @@
 <!--pages/setting/setting.wxml-->
-<text>pages/tabBar/setting/setting.wxml</text>
+
+<view class="view_contain">
+
+  <!-- 第一部分 -->
+  <view wx:if="{{userInfo}}">
+    <view class="view_1">
+      <view class="view_image_text">
+        <view>
+          <image class="image_radius" src="{{userInfo.avatarUrl}}" />
+        </view>
+        <view class="uname">
+          <text>{{userInfo.nickName}}</text>
+          <text>{{username}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view wx:else class="view_1">
+    <view class="view_image_text">
+      <view>
+        <image class="image_radius" src="../../image/default.png" />
+      </view>
+      <view class="uname">
+        <text>未登录</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 第三部分 -->
+  <view class="big3">
+    <view wx:for="{{modules}}" wx:key="url" wx:for-index="index" wx:class="view_3">
+      <view class="list-item">
+        <view class="left">
+          <van-icon name="{{item.icon_name}}" color="{{item.icon_color}}" size="25px" />
+          <text class="item-text">{{item.text}}</text>
+        </view>
+        <view class="right">
+          <van-switch checked="{{ item.status }}" bind:change="onChange" size="20px" data-id="{{index}}"/>
+        </view>
+      </view>
+    </view>
+    <view class="list-item">
+      <view class="left">
+        <van-icon name="ellipsis" color="green" size="25px" />
+        <text class="item-text">其他模块</text>
+      </view>
+    </view>
+  </view>
+</view>

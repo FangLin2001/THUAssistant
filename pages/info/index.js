@@ -4,14 +4,14 @@ Page({
     styleIsolation: 'shared'
   },
   data: {
-    active: 0,
-    tabDatas: [{
-        "text": "GPA"
-      },
-      {
-        "text": "日程表"
-      }
-    ],
+    // active: 0,
+    // tabDatas: [{
+    //     "text": "GPA"
+    //   },
+    //   {
+    //     "text": "日程表"
+    //   }
+    // ],
     classMap: {
       "A+": "Apclass",
       "A": "Aclass",
@@ -29,7 +29,9 @@ Page({
       "F": "Fclass",
       "W": "Wclass",
     },
-    report: [],
+    // report: [],
+    reportClass: {},
+    average: {},
     discardReport: [],
   },
 
@@ -47,6 +49,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({title: '加载中', icon: 'loading', duration: 100000});
     console.log("onLoad");
     const loginInfo = wx.getStorageSync('loginInfo');
     if (!loginInfo) {
@@ -71,7 +74,6 @@ Page({
       url: 'http://localhost:3000/info/login',
       data: {
         username: loginInfo.username,
-        // password: "20010120FangLin"
       },
       method: "POST",
       dataType: 'JSON',
@@ -102,13 +104,42 @@ Page({
           success: (res) => {
             var jsonRes = JSON.parse(res.data);
             if (jsonRes["msg"] == "ok") {
+              // that.setData({
+              //   report: jsonRes["report"]
+              // });
+              // console.log("report success");
+              var report = jsonRes["report"]
+              var reportClass_ = Object.create(null);
+              for (var i in report) { //遍历数组
+                // console.log(report[i], report[i].semester);
+                if (report[i].semester in reportClass_) {
+                  reportClass_[report[i].semester].push(report[i]);
+                } else {
+                  reportClass_[report[i].semester] = new Array(report[i]);
+                }
+              }
+              var average_ = Object.create(null);
+              for(var key in reportClass_){
+                var point = 0;
+                var credit = 0;
+                for(var i in reportClass_[key])
+                {
+                  if(reportClass_[key][i].point) 
+                  {
+                    point = point + reportClass_[key][i].point * reportClass_[key][i].credit;
+                    credit = credit + reportClass_[key][i].credit;
+                  }
+                }
+                average_[key] = (point / credit).toFixed(4);
+              };
               that.setData({
-                report: jsonRes["report"]
+                reportClass: reportClass_,
+                average: average_
               });
-              console.log("report success");
             } else {
               console.log(jsonRes);
             }
+            wx.hideLoading();
           }
         });
       }

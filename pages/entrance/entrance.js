@@ -8,6 +8,7 @@ Page({
     password: "20010120FangLin",
     hasLoginInfo: false,
     hide: true,
+    modules: []
   },
 
   clickEye(e) {
@@ -118,7 +119,7 @@ Page({
     const loginInfo = wx.getStorageSync('loginInfo') || {};
     // 判断是否存在已经授权的用户信息
     if (Object.keys(loginInfo).length == 0) {
-      console.log("no loginInfo");
+      // console.log("no loginInfo");
       that.setData({
         hasLoginInfo: false,
       });
@@ -161,6 +162,10 @@ Page({
   onShow: function () {
     this.getTabBar().setData({
       active: 0
+    });
+    var app = getApp();
+    this.setData({
+      modules: app.globalData.modules
     });
   },
 
