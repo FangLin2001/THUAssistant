@@ -1,0 +1,74 @@
+<!--pages/info/discards/discards.wxml-->
+
+<wxs module="fn">
+  module.exports = {
+    indexOf: function (arr, id) {
+      return arr.indexOf(id);
+    },
+    getClass: function (map, grade) {
+      return map[grade];
+    },
+    getPoint: function (point) {
+      if (point == '4') {
+        return '4.0';
+      }
+      else if (point == '3') {
+        return '3.0';
+      }
+      else if (point == '2') {
+        return '2.0';
+      }
+      else if (point == '1') {
+        return '1.0';
+      }
+      else return point;
+    },
+    fetchAverage: function (average, key) {
+      return average[key];
+    }
+  }
+</wxs>
+
+<view>
+  <block wx:if="{{discardReport.length === 0}}">
+    <van-cell inset>
+      <view slot="title" class="empty">
+        这里空空如也！
+      </view>
+    </van-cell>
+  </block>
+  <block wx:else>
+    <van-cell-group>
+      <view wx:for="{{reportClass}}" wx:key="key" wx:for-index="key" wx:for-item="group">
+        <!-- <van-cell value-class="indexValue" custom-class="indexCell">
+        <view slot="title">
+          <view class="title">{{key}}</view>
+        </view>
+        <view slot="">{{fn.fetchAverage(average, key)}}</view>
+      </van-cell> -->
+
+        <view wx:for="{{group}}" wx:key="id" wx:for-item="instance" style="touch-action: none;">
+          <block wx:if="{{fn.indexOf(discardReport, instance.name + instance.semester) != -1}}">
+            <van-swipe-cell right-width="{{ 60 }}" bind:click="reportToTap" data-key="{{instance.name + instance.semester}}">
+              <view slot="right">
+                <view class="van-swipe-cell__right">恢复</view>
+              </view>
+              <van-cell use-label-slot="true">
+                <view slot="title" class="van-ellipsis">
+                  <van-button disabled custom-class="{{fn.getClass(classMap, instance.grade)}}">{{instance.grade}}</van-button>
+                  <text> {{instance.name}}</text>
+                </view>
+                <view slot="">
+                  <text>{{instance.credit}}</text>
+                  <text> • </text>
+                  <text wx:if="{{instance.point}}">{{fn.getPoint(instance.point)}}</text>
+                  <text wx:else>N/A</text>
+                </view>
+              </van-cell>
+            </van-swipe-cell>
+          </block>
+        </view>
+      </view>
+    </van-cell-group>
+  </block>
+</view>

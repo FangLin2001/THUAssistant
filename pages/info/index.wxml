@@ -44,7 +44,7 @@
 
       <view wx:for="{{group}}" wx:key="id" wx:for-item="instance" style="touch-action: none;">
         <block wx:if="{{fn.indexOf(discardReport, instance.name + instance.semester) == -1}}">
-          <van-swipe-cell right-width="{{ 60 }}">
+          <van-swipe-cell right-width="{{ 60 }}" bind:click="reportToTap" data-key="{{instance.name + instance.semester}}">
             <view slot="right">
               <view class="van-swipe-cell__right">隐藏</view>
             </view>

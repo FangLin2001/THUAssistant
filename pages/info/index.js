@@ -35,21 +35,46 @@ Page({
     discardReport: [],
   },
 
-  onChange(e) {
-    // wx.showToast({
-    //   title: `切换到 ${e.detail.title}`,
-    //   icon: 'none'
-    // });
-    this.setData({
-      active: e.detail.index
-    });
+  // onChange(e) {
+  //   // wx.showToast({
+  //   //   title: `切换到 ${e.detail.title}`,
+  //   //   icon: 'none'
+  //   // });
+  //   this.setData({
+  //     active: e.detail.index
+  //   });
+  // },
+
+  reportToTap: function (e) {
+    // console.log(e);
+    if (e.detail == "right") {
+      var tmp = wx.getStorageSync('discardReport') || [];
+      tmp.push(e.currentTarget.dataset.key);
+      wx.setStorageSync('discardReport', tmp);
+      this.setData({
+        discardReport: tmp
+      });
+      // console.log(wx.getStorageSync('discardNotifications'));
+    } else if (e.detail == "cell") {}
+  },
+  reportToConceal: function (e) {
+    // console.log("reportToConceal");
+    var reportClass = this.data.reportClass;
+    wx.navigateTo({
+      //实现跳转到test界面的函数，url附带跳转时传送的数据
+      url: '/pages/info/discards/discards?reportClass=' + encodeURIComponent(JSON.stringify(reportClass)),
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.showLoading({title: '加载中', icon: 'loading', duration: 100000});
+    wx.showLoading({
+      title: '加载中',
+      icon: 'loading',
+      duration: 100000
+    });
     console.log("onLoad");
     const loginInfo = wx.getStorageSync('loginInfo');
     if (!loginInfo) {
@@ -119,18 +144,20 @@ Page({
                 }
               }
               var average_ = Object.create(null);
-              for(var key in reportClass_){
+              for (var key in reportClass_) {
                 var point = 0;
                 var credit = 0;
-                for(var i in reportClass_[key])
-                {
-                  if(reportClass_[key][i].point) 
-                  {
+                for (var i in reportClass_[key]) {
+                  if (reportClass_[key][i].point) {
                     point = point + reportClass_[key][i].point * reportClass_[key][i].credit;
                     credit = credit + reportClass_[key][i].credit;
                   }
                 }
-                average_[key] = (point / credit).toFixed(4);
+                if (credit === 0) {
+                  average_[key] = "N/A";
+                } else {
+                  average_[key] = (point / credit).toFixed(4);
+                }
               };
               that.setData({
                 reportClass: reportClass_,

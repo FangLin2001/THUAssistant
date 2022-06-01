@@ -11,7 +11,8 @@
     "pages/learn/homework/discards/discards",
     "pages/learn/course/course",
     "pages/learn/course/discards/discards",
-    "pages/info/index"
+    "pages/info/index",
+    "pages/info/discards/discards"
   ],
   "tabBar": {
     "custom": true,
