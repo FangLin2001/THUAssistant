@@ -126,6 +126,11 @@ Component({
      */
     onLoad: function (options) {
       console.log("onLoad");
+      wx.showLoading({
+        title: '加载中',
+        icon: 'loading',
+        duration: 100000
+      });
       const loginInfo = wx.getStorageSync('loginInfo') || {};
       if (Object.keys(loginInfo).length == 0) {
         wx.navigateBack({
@@ -286,6 +291,9 @@ Component({
               }
             }
           });
+        },
+        complete() {
+          wx.hideLoading();
         }
       });
 
